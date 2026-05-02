@@ -58,6 +58,7 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
             className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             loading="lazy"
+            unoptimized={true}
           />
           {product.originalPrice && product.originalPrice > product.price && (
             <span className="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full">

@@ -69,6 +69,7 @@ export default function BestsellerCard({ product, index = 0 }: BestsellerCardPro
           className="object-contain p-8 transition-transform duration-700 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, 25vw"
           priority={index < 4}
+          unoptimized={true}
         />
       </Link>
 
