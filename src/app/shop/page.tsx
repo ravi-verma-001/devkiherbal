@@ -18,6 +18,8 @@ interface Product {
   benefits?: string[];
 }
 
+import { fallbackProducts } from '@/lib/fallbackProducts';
+
 const CATEGORIES = ['all', 'immunity', 'sleep', 'energy', 'mood', 'digestive'];
 const BENEFITS = ['immune', 'sleep', 'energy', 'mood', 'digestive', 'vitamins'];
 
@@ -47,12 +49,36 @@ function ShopContent() {
     if (maxPrice) params.set('maxPrice', maxPrice);
 
     fetch(`/api/products?${params}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('API Error');
+        return res.json();
+      })
       .then((data) => {
-        setProducts(Array.isArray(data) ? data : []);
+        if (Array.isArray(data) && data.length > 0) {
+          setProducts(data);
+        } else {
+          throw new Error('Empty DB');
+        }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        // Fallback local filtering if DB is not connected
+        let filteredFallback = fallbackProducts as Product[];
+        if (category && category !== 'all') {
+          filteredFallback = filteredFallback.filter(p => p.category.toLowerCase().includes(category.toLowerCase()));
+        }
+        if (benefit) {
+          filteredFallback = filteredFallback.filter(p => p.benefits?.some(b => b.toLowerCase().includes(benefit.toLowerCase())));
+        }
+        if (minPrice) {
+          filteredFallback = filteredFallback.filter(p => p.price >= Number(minPrice));
+        }
+        if (maxPrice) {
+          filteredFallback = filteredFallback.filter(p => p.price <= Number(maxPrice));
+        }
+        setProducts(filteredFallback);
+        setLoading(false);
+      });
   }, [category, benefit, minPrice, maxPrice]);
 
   const filtered = products.filter((p) =>

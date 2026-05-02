@@ -18,6 +18,8 @@ interface Product {
   benefits?: string[];
 }
 
+import { fallbackProducts } from '@/lib/fallbackProducts';
+
 export default function FeaturedProducts({ initialProducts = [] }: { initialProducts?: Product[] }) {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [loading, setLoading] = useState(initialProducts.length === 0);
@@ -30,60 +32,13 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
     fetch('/api/products?featured=true')
       .then((res) => res.json())
       .then((data) => {
-        setProducts(Array.isArray(data) ? data : []);
+        setProducts(Array.isArray(data) && data.length > 0 ? data : []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, [initialProducts]);
 
-  const fallbackProducts: Product[] = [
-    { 
-      _id: '1', 
-      name: 'Daily Burner Capsules', 
-      slug: 'daily-burner-capsules', 
-      price: 1249, 
-      images: ['/banner/product2-clean.png'], 
-      category: 'Daily Burner', 
-      rating: 4.7, 
-      reviewCount: 1134,
-      benefits: ['Burn Calories', 'Reduce Carb Absorption', 'Manage Cravings', 'Boost Metabolism']
-    },
-    { 
-      _id: '2', 
-      name: 'Periods Pain Relief Capsule', 
-      slug: 'periods-pain-relief-capsule', 
-      price: 1249, 
-      images: ['/banner/product9-clean.png'], 
-      category: 'Women Health', 
-      rating: 4.8, 
-      reviewCount: 945,
-      benefits: ['Relieves Cramps', 'Balances Mood', 'Reduces Inflammation', 'Hormonal Balance']
-    },
-    { 
-      _id: '6', 
-      name: 'What\'s Up Stress Relief Gummies', 
-      slug: 'whats-up-stress-relief-gummies', 
-      price: 722, 
-      images: ['/banner/product6-clean.png'], 
-      category: 'Wellness', 
-      rating: 4.7, 
-      reviewCount: 642,
-      benefits: ['Promotes Calmness', 'Mental Balance', 'Reduces Anxiety', 'Improves Focus']
-    },
-    { 
-      _id: '9', 
-      name: 'Night Burner Capsules', 
-      slug: 'night-burner-capsules', 
-      price: 1249, 
-      images: ['/banner/product1-clean.png'], 
-      category: 'Weight Management', 
-      rating: 4.8, 
-      reviewCount: 730,
-      benefits: ['Burn Night-time Calories', 'Manage Cravings', 'Reduces Cortisol', 'Restful Sleep']
-    },
-  ];
-
-  const displayProducts = products.length > 0 ? products : fallbackProducts;
+  const displayProducts = products.length > 0 ? products : (fallbackProducts as Product[]);
 
   return (
     <section id="featured" className="py-20 bg-[#F9F9F9]">
