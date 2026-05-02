@@ -171,8 +171,8 @@ export const fallbackProducts = [
   },
   {
     _id: '11',
-    name: 'Pro Skin and Hair Combo',
-    slug: 'pro-skin-hair-combo',
+    name: 'FIT FLEX AND U-FIT COMBO',
+    slug: 'fit-flex-u-fit-combo',
     description: 'Transform your skin and hair with this dermatologist-recommended combo of Beauty and Gluta-Glow supplements.',
     price: 1999,
     originalPrice: 2499,
@@ -188,8 +188,8 @@ export const fallbackProducts = [
   },
   {
     _id: '12',
-    name: 'Beauty Sleep Combo',
-    slug: 'beauty-sleep-combo',
+    name: 'MASS GAINER & BUILDER COMBO',
+    slug: 'mass-gainer-builder-combo',
     description: 'Wake up refreshed and glowing with our best-selling Beauty and Sleep combo.',
     price: 1799,
     originalPrice: 2299,
@@ -205,8 +205,8 @@ export const fallbackProducts = [
   },
   {
     _id: '13',
-    name: 'Look Good Feel Good Combo',
-    slug: 'look-good-feel-good-combo',
+    name: 'Shilajit and Beauty Gummies Combo',
+    slug: 'shilajit-beauty-gummies-combo',
     description: 'The ultimate wellness bundle for your beauty, sleep, and mental peace.',
     price: 2499,
     originalPrice: 2999,
@@ -222,8 +222,8 @@ export const fallbackProducts = [
   },
   {
     _id: '14',
-    name: 'Stress-Free Sleep Combo',
-    slug: 'stress-free-sleep-combo',
+    name: 'Periods Pain Relief and Night Relief Gummies',
+    slug: 'periods-pain-relief-night-relief-gummies',
     description: 'A powerful mix to calm your mind and help you drift into a peaceful slumber.',
     price: 1399,
     originalPrice: 1799,
