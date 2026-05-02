@@ -18,11 +18,15 @@ interface Product {
   benefits?: string[];
 }
 
-export default function FeaturedProducts() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+export default function FeaturedProducts({ initialProducts = [] }: { initialProducts?: Product[] }) {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
 
   useEffect(() => {
+    if (initialProducts.length > 0) {
+      setLoading(false);
+      return;
+    }
     fetch('/api/products?featured=true')
       .then((res) => res.json())
       .then((data) => {
@@ -30,7 +34,7 @@ export default function FeaturedProducts() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, [initialProducts]);
 
   const fallbackProducts: Product[] = [
     { 

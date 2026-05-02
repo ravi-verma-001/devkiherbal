@@ -8,11 +8,25 @@ import FlexFitHighlight from '@/components/home/FlexFitHighlight';
 import ComboSection from '@/components/home/ComboSection';
 import PhotoReviews from '@/components/home/PhotoReviews';
 
-export default function Home() {
+import dbConnect from '@/lib/mongodb';
+import Product from '@/models/Product';
+
+export const revalidate = 3600;
+
+export default async function Home() {
+  let featuredProducts = [];
+  try {
+    await dbConnect();
+    const products = await Product.find({ inStock: true, featured: true }).sort({ createdAt: -1 }).limit(4).lean();
+    featuredProducts = JSON.parse(JSON.stringify(products));
+  } catch (err) {
+    console.error('Error fetching featured products:', err);
+  }
+
   return (
     <div>
       <Hero />
-      <FeaturedProducts />
+      <FeaturedProducts initialProducts={featuredProducts} />
       <FlexFitHighlight />
       <section id="benefits">
         <ProductBenefits />
