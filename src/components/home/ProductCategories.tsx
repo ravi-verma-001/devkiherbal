@@ -66,18 +66,23 @@ export default function ProductCategories() {
             >
               <Link
                 href={cat.href}
-                className="block group h-full p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all overflow-hidden border border-slate-100"
+                className="block group h-full p-6 rounded-[24px] bg-[#6B2C58] shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden relative"
               >
+                {/* Decorative background circle */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors" />
+
                 <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} mb-4`}
+                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} mb-4 border border-white/20 shadow-inner`}
                 />
-                <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors">
+                <h3 className="text-lg font-black text-white mb-1 tracking-wide">
                   {cat.name}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4">{cat.description}</p>
-                <span className="inline-flex items-center gap-1 text-emerald-600 font-medium text-sm">
-                  Shop <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+                <p className="text-sm text-white/70 mb-6 font-medium">{cat.description}</p>
+                <div className="mt-auto">
+                  <span className="inline-flex items-center gap-1.5 text-white/90 font-black text-[11px] uppercase tracking-widest group-hover:text-amber-300 transition-colors">
+                    Explore <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1.5 transition-transform" />
+                  </span>
+                </div>
               </Link>
             </motion.div>
           ))}
