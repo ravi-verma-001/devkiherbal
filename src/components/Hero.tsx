@@ -89,13 +89,13 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-[#F5F5F5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 relative">
+      <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 py-0 sm:py-6 lg:py-10 relative">
         <div
-          className="relative rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(15,118,110,0.12)] bg-[#F5F5F5]"
+          className="relative sm:rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(15,118,110,0.12)] bg-[#F5F5F5]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative aspect-[11/4.84] w-full">
+          <div className="relative aspect-[4/5] sm:aspect-[11/4.84] w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide.id}

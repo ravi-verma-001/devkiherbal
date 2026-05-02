@@ -79,17 +79,19 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
             </motion.button>
           )}
         </div>
-        <div className="p-5">
-          <span className="text-xs font-medium text-emerald-600 uppercase tracking-wider">
+        <div className="p-4 md:p-5">
+          <span className="text-[10px] md:text-xs font-medium text-emerald-600 uppercase tracking-wider">
             {product.category}
           </span>
-          <h3 className="font-semibold text-gray-900 mt-1 line-clamp-2">{product.name}</h3>
-          <div className="flex items-center gap-2 mt-2">
+          <h3 className="text-sm md:text-base font-bold text-gray-900 mt-1 line-clamp-2 h-10 md:h-12 leading-tight">
+            {product.name}
+          </h3>
+          <div className="flex items-center gap-1 md:gap-2 mt-2">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star
                   key={i}
-                  className={`h-4 w-4 ${
+                  className={`h-3 w-3 md:h-4 md:w-4 ${
                     i <= Math.floor(product.rating)
                       ? 'text-amber-400 fill-amber-400'
                       : 'text-gray-200'
@@ -97,12 +99,12 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
                 />
               ))}
             </div>
-            <span className="text-sm text-gray-500">{product.rating}</span>
+            <span className="text-xs md:text-sm text-gray-500 font-bold">{product.rating}</span>
           </div>
-          <div className="flex items-center gap-3 mt-4">
-            <span className="text-xl font-bold text-emerald-600">{formatCurrency(product.price)}</span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-4">
+            <span className="text-lg md:text-xl font-black text-emerald-600">{formatCurrency(product.price)}</span>
             {product.originalPrice && product.originalPrice > product.price && (
-              <span className="text-sm text-gray-400 line-through">
+              <span className="text-xs md:text-sm text-gray-400 line-through font-medium">
                 {formatCurrency(product.originalPrice)}
               </span>
             )}

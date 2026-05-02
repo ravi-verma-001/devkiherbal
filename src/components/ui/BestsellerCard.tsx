@@ -70,39 +70,39 @@ export default function BestsellerCard({ product, index = 0 }: BestsellerCardPro
         />
       </Link>
 
-      <div className="p-6 flex flex-col flex-1">
-        <div className="mb-4">
-          <p className="text-[10px] font-black text-[#6B2C58] tracking-widest uppercase mb-1.5 opacity-70">
+      <div className="p-4 md:p-6 flex flex-col flex-1">
+        <div className="mb-2 md:mb-4">
+          <p className="text-[9px] md:text-[10px] font-black text-[#6B2C58] tracking-widest uppercase mb-1 opacity-70">
             {product.category}
           </p>
-          <h3 className="text-xl font-extrabold text-gray-900 leading-tight group-hover:text-[#6B2C58] transition-colors">
+          <h3 className="text-base md:text-xl font-extrabold text-gray-900 leading-tight group-hover:text-[#6B2C58] transition-colors line-clamp-2">
             {product.name}
           </h3>
         </div>
         
-        <div className="flex items-center gap-2 mb-6">
-          <div className="flex bg-amber-50 px-2 py-0.5 rounded-full items-center gap-1">
-            <Star className="h-3 w-3 text-amber-500 fill-amber-500" />
-            <span className="text-[11px] font-black text-amber-700">
+        <div className="flex items-center gap-1 md:gap-2 mb-4 md:mb-6">
+          <div className="flex bg-amber-50 px-1.5 py-0.5 rounded-full items-center gap-1">
+            <Star className="h-2.5 w-2.5 text-amber-500 fill-amber-500" />
+            <span className="text-[10px] md:text-[11px] font-black text-amber-700">
               {product.rating}
             </span>
           </div>
-          <span className="text-[11px] font-bold text-gray-400">
-            ({product.reviewCount?.toLocaleString() || '1,000+'} reviews)
+          <span className="text-[10px] md:text-[11px] font-bold text-gray-400">
+            ({product.reviewCount || '1k+'})
           </span>
         </div>
 
-        <div className="mt-auto flex items-center justify-between gap-4">
+        <div className="mt-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4">
           <div className="flex flex-col">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Price</p>
-            <p className="text-xl font-black text-gray-900">
+            <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Price</p>
+            <p className="text-lg md:text-xl font-black text-gray-900">
               {formatCurrency(product.price)}
             </p>
           </div>
           
           <button
             onClick={handleAddToCart}
-            className="flex-1 bg-black text-white py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase hover:bg-[#6B2C58] transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95"
+            className="w-full sm:flex-1 bg-black text-white py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[10px] md:text-[11px] tracking-widest uppercase hover:bg-[#6B2C58] transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95"
           >
             Add to Cart
           </button>

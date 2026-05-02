@@ -22,9 +22,9 @@ export default function ComboCard({ title, image, gradient, href, index }: Combo
       className="relative group"
     >
       <Link href={href} className="block group">
-        <div className={`aspect-square rounded-[2.5rem] bg-gradient-to-br ${gradient} p-8 overflow-hidden relative shadow-lg group-hover:shadow-2xl transition-all duration-500`}>
+        <div className={`aspect-square rounded-[1.5rem] md:rounded-[2.5rem] bg-gradient-to-br ${gradient} p-4 md:p-8 overflow-hidden relative shadow-lg group-hover:shadow-2xl transition-all duration-500`}>
           {/* Card Title */}
-          <h3 className="text-2xl md:text-3xl font-black text-white leading-tight drop-shadow-md z-10 relative max-w-[80%]">
+          <h3 className="text-lg md:text-3xl font-black text-white leading-tight drop-shadow-md z-10 relative max-w-[90%] md:max-w-[80%]">
             {title}
           </h3>
 
