@@ -39,23 +39,23 @@ const categories = [
 
 export default function ProductCategories() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
             Shop by Category
           </h2>
-          <p className="text-xl text-gray-600">
-            Find the right support for your wellness goals.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Find the right support for your wellness goals with our curated collections.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.name}
@@ -66,23 +66,21 @@ export default function ProductCategories() {
             >
               <Link
                 href={cat.href}
-                className="block group h-full p-6 rounded-[24px] bg-[#6B2C58] shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden relative"
+                className="block group h-full p-8 rounded-[32px] bg-[#FDF7FA] border border-[#6B2C58]/5 hover:border-[#6B2C58]/20 hover:bg-white shadow-sm hover:shadow-[0_20px_40px_rgba(107,44,88,0.1)] transition-all duration-500 overflow-hidden relative"
               >
-                {/* Decorative background circle */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors" />
-
                 <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} mb-4 border border-white/20 shadow-inner`}
+                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.color} mb-6 shadow-lg shadow-black/5 group-hover:scale-110 transition-transform duration-500`}
                 />
-                <h3 className="text-lg font-black text-white mb-1 tracking-wide">
+                <h3 className="text-xl font-extrabold text-gray-900 mb-2 group-hover:text-[#6B2C58] transition-colors">
                   {cat.name}
                 </h3>
-                <p className="text-sm text-white/70 mb-6 font-medium">{cat.description}</p>
-                <div className="mt-auto">
-                  <span className="inline-flex items-center gap-1.5 text-white/90 font-black text-[11px] uppercase tracking-widest group-hover:text-amber-300 transition-colors">
-                    Explore <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1.5 transition-transform" />
-                  </span>
-                </div>
+                <p className="text-sm text-gray-500 mb-6 leading-relaxed">{cat.description}</p>
+                <span className="inline-flex items-center gap-2 text-[#6B2C58] font-black text-xs tracking-widest uppercase">
+                  Explore <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+
+                {/* Decorative background element */}
+                <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-[#6B2C58]/5 rounded-full blur-3xl group-hover:bg-[#6B2C58]/10 transition-colors" />
               </Link>
             </motion.div>
           ))}
