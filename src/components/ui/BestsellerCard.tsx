@@ -62,14 +62,11 @@ export default function BestsellerCard({ product, index = 0 }: BestsellerCardPro
         {/* Subtle background gradient splash */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#F1E4EE]/30 opacity-60" />
         
-        <Image
+        <img
           src={image}
           alt={product.name}
-          fill
-          className="object-contain p-8 transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, 25vw"
-          priority={index < 4}
-          unoptimized={true}
+          className="absolute inset-0 w-full h-full object-contain p-8 transition-transform duration-700 group-hover:scale-110"
+          loading="eager"
         />
       </Link>
 
