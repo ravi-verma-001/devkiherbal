@@ -94,7 +94,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-bold">
           <p className="text-gray-400">
-            © 2026, Devki Herbal Powered by Shopify
+            © 2026, Devki Herbal Powered by Divinecodes.info
           </p>
           <div className="flex gap-8">
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
