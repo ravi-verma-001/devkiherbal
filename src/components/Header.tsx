@@ -33,8 +33,71 @@ const NAV_PRODUCTS = [
     name: 'Stress Relief Gummies',
     badge: 'SAVE UPTO 40%',
     badgeColor: 'bg-orange-500',
-    image: '/banner/product6-clean.png',
+    image: '/banner/product6.png',
     href: '/product/stress-relief-gummies',
+  },
+  {
+    name: 'Shilajit Gummies',
+    badge: 'VITALITY',
+    badgeColor: 'bg-amber-800',
+    image: '/banner/product8.png',
+    href: '/product/shilajit-gummies',
+  },
+  {
+    name: 'Beauty Gummies',
+    badge: 'GLOW',
+    badgeColor: 'bg-pink-400',
+    image: '/banner/product6-white.png',
+    href: '/product/beauty-gummies',
+  },
+  {
+    name: 'Sleep Gummies',
+    badge: 'DEEP SLEEP',
+    badgeColor: 'bg-indigo-500',
+    image: '/banner/product5.jpeg',
+    href: '/product/sleep-gummies',
+  },
+  {
+    name: 'Gut Health Gummies',
+    badge: 'DIGESTION',
+    badgeColor: 'bg-green-600',
+    image: '/banner/product7.jpeg',
+    href: '/product/gut-health-gummies',
+  },
+  {
+    name: 'Gluta-Glow Gummies',
+    badge: 'RADIANCE',
+    badgeColor: 'bg-yellow-500',
+    image: '/banner/product8.png',
+    href: '/product/gluta-glow-gummies',
+  },
+  {
+    name: 'FIT FLEX & U-FIT COMBO',
+    badge: 'COMBO',
+    badgeColor: 'bg-orange-600',
+    image: '/banner/combo-skin-hair.jpeg',
+    href: '/product/fit-flex-u-fit-combo',
+  },
+  {
+    name: 'MASS GAINER COMBO',
+    badge: 'BUILDER',
+    badgeColor: 'bg-blue-700',
+    image: '/banner/combo-beauty-sleep.jpeg',
+    href: '/product/mass-gainer-builder-combo',
+  },
+  {
+    name: 'Shilajit & Beauty Combo',
+    badge: 'WELLNESS',
+    badgeColor: 'bg-rose-500',
+    image: '/banner/combo-feel-good.jpeg',
+    href: '/product/shilajit-beauty-gummies-combo',
+  },
+  {
+    name: 'Periods & Night Relief',
+    badge: 'CALM',
+    badgeColor: 'bg-indigo-700',
+    image: '/banner/Stress-Free Sleep Combo.jpeg',
+    href: '/product/periods-pain-relief-night-relief-gummies',
   },
 ];
 
@@ -169,9 +232,8 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Menu Content - Scrollable Area */}
             <div className="flex-1 overflow-y-auto px-2 py-4 pb-12">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              <div className="grid grid-cols-2 gap-3 max-w-3xl mx-auto">
                 {NAV_PRODUCTS.map((product, index) => (
                   <motion.div
                     key={product.name}
@@ -182,21 +244,21 @@ export default function Header() {
                     <Link
                       href={product.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-5 bg-white rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] active:scale-95 transition-transform"
+                      className="flex items-center justify-between p-3 bg-white rounded-[20px] shadow-[0_2px_10px_rgba(0,0,0,0.04)] active:scale-95 transition-transform h-full"
                     >
-                      <div className="flex flex-col gap-2 max-w-[65%]">
-                        <span className={`${product.badgeColor} text-white text-[9px] font-bold px-2 py-0.5 rounded w-fit tracking-wider uppercase`}>
+                      <div className="flex flex-col gap-1.5 max-w-[65%]">
+                        <span className={`${product.badgeColor} text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm w-fit tracking-wider uppercase`}>
                           {product.badge}
                         </span>
-                        <h3 className="text-base font-bold text-gray-800 leading-tight">
+                        <h3 className="text-[13px] font-bold text-gray-800 leading-tight">
                           {product.name}
                         </h3>
                       </div>
-                      <div className="relative w-20 h-20 -mr-2">
+                      <div className="relative w-14 h-14 shrink-0">
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-full h-full object-contain drop-shadow-md"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     </Link>
@@ -204,25 +266,25 @@ export default function Header() {
                 ))}
                 
                 {/* Additional Links */}
-                <div className="col-span-1 sm:col-span-2 mt-4 pt-4 border-t border-slate-200">
-                  <nav className="flex flex-col gap-1">
-                    <Link href="/shop" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold py-3 px-2 flex justify-between items-center group">
-                      Browse All Catalog <span className="opacity-40 group-hover:opacity-100 transition-opacity">→</span>
+                <div className="col-span-2 mt-6 pt-6 border-t border-slate-100">
+                  <nav className="flex flex-col">
+                    <Link href="/shop" onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group border-b border-slate-50">
+                      Browse All Catalog <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
                     </Link>
-                    <Link href="/#benefits" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold py-3 px-2 flex justify-between items-center group">
-                      Our Benefits <span className="opacity-40 group-hover:opacity-100 transition-opacity">→</span>
+                    <Link href="/#benefits" onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group border-b border-slate-50">
+                      Our Benefits <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
                     </Link>
                     {!user ? (
-                      <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold py-3 px-2 flex justify-between items-center group">
-                        Login / Sign Up <span className="opacity-40 group-hover:opacity-100 transition-opacity">→</span>
+                      <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group">
+                        Login / Sign Up <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
                       </Link>
                     ) : (
                       <>
-                        <Link href={user.role === 'admin' ? '/admin' : '/profile'} onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold py-3 px-2 flex justify-between items-center group">
-                          {user.role === 'admin' ? 'Admin Portal' : 'My Profile'} <span className="opacity-40 group-hover:opacity-100 transition-opacity">→</span>
+                        <Link href={user.role === 'admin' ? '/admin' : '/profile'} onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group border-b border-slate-50">
+                          {user.role === 'admin' ? 'Admin Portal' : 'My Profile'} <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
                         </Link>
-                        <button onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.reload(); }} className="w-full text-left text-xl font-semibold text-red-500 py-3 px-2 flex justify-between items-center group">
-                          Logout <span className="opacity-40 group-hover:opacity-100 transition-opacity">→</span>
+                        <button onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.reload(); }} className="w-full text-left text-[17px] font-semibold text-red-500 py-4 px-2 flex justify-between items-center group">
+                          Logout <span className="text-slate-300 group-hover:text-red-500 transition-colors text-2xl font-light">→</span>
                         </button>
                       </>
                     )}
