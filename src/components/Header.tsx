@@ -30,13 +30,6 @@ const NAV_PRODUCTS = [
     href: '/product/night-fat-burner',
   },
   {
-    name: 'Stress Relief Gummies',
-    badge: 'SAVE UPTO 40%',
-    badgeColor: 'bg-orange-500',
-    image: '/banner/product6.png',
-    href: '/product/stress-relief-gummies',
-  },
-  {
     name: 'Shilajit Gummies',
     badge: 'VITALITY',
     badgeColor: 'bg-amber-800',
@@ -65,20 +58,6 @@ const NAV_PRODUCTS = [
     href: '/product/gut-health-gummies',
   },
   {
-    name: 'Gluta-Glow Gummies',
-    badge: 'RADIANCE',
-    badgeColor: 'bg-yellow-500',
-    image: '/banner/product8.png',
-    href: '/product/gluta-glow-gummies',
-  },
-  {
-    name: 'FIT FLEX & U-FIT COMBO',
-    badge: 'COMBO',
-    badgeColor: 'bg-orange-600',
-    image: '/banner/combo-skin-hair.jpeg',
-    href: '/product/fit-flex-u-fit-combo',
-  },
-  {
     name: 'MASS GAINER COMBO',
     badge: 'BUILDER',
     badgeColor: 'bg-blue-700',
@@ -91,13 +70,6 @@ const NAV_PRODUCTS = [
     badgeColor: 'bg-rose-500',
     image: '/banner/combo-feel-good.jpeg',
     href: '/product/shilajit-beauty-gummies-combo',
-  },
-  {
-    name: 'Periods & Night Relief',
-    badge: 'CALM',
-    badgeColor: 'bg-indigo-700',
-    image: '/banner/Stress-Free Sleep Combo.jpeg',
-    href: '/product/periods-pain-relief-night-relief-gummies',
   },
 ];
 

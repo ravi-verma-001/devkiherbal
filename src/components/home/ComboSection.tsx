@@ -6,12 +6,6 @@ import ComboCard from '../ui/ComboCard';
 
 const combos = [
   {
-    title: 'FIT FLEX AND U-FIT COMBO',
-    image: '/banner/combo-skin-hair.jpeg',
-    gradient: 'from-pink-100 to-purple-200',
-    href: '/shop?category=combo',
-  },
-  {
     title: 'MASS GAINER & BUILDER COMBO',
     image: '/banner/combo-beauty-sleep.jpeg',
     gradient: 'from-blue-100 to-indigo-200',
@@ -21,12 +15,6 @@ const combos = [
     title: 'Shilajit and Beauty Gummies Combo',
     image: '/banner/combo-feel-good.jpeg',
     gradient: 'from-gray-100 to-slate-300',
-    href: '/shop?category=combo',
-  },
-  {
-    title: 'Periods Pain Relief and Night Relief Gummies',
-    image: '/banner/Stress-Free Sleep Combo.jpeg',
-    gradient: 'from-indigo-100 to-blue-200',
     href: '/shop?category=combo',
   },
 ];
