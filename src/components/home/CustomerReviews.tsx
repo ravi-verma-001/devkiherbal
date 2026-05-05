@@ -8,7 +8,7 @@ const reviews = [
   {
     name: 'Jessica L.',
     rating: 5,
-    text: 'The Sleep gummies have completely changed my nights. I fall asleep faster and wake up feeling refreshed. Highly recommend!',
+    text: 'The Beauty gummies have completely changed my skin routine. I wake up with a natural glow every day. Highly recommend!',
     verified: true,
   },
   {

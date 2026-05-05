@@ -84,7 +84,6 @@ export default function Footer() {
                 <li><Link href="/refund" className="hover:text-gray-400 transition-colors">Refund Policy</Link></li>
                 <li><Link href="/shop" className="hover:text-gray-400 transition-colors">Health Supplement</Link></li>
                 <li><Link href="/shop" className="hover:text-gray-400 transition-colors">Beauty Supplement</Link></li>
-                <li><Link href="/shop" className="hover:text-gray-400 transition-colors">Marine Collagen Powder</Link></li>
                 <li><Link href="/blog" className="hover:text-gray-400 transition-colors">Blog</Link></li>
               </ul>
             </div>

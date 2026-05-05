@@ -16,13 +16,6 @@ const NAV_PRODUCTS = [
     href: '/product/periods-pain-relief-capsule',
   },
   {
-    name: 'Daily Burner Capsule',
-    badge: 'NEW LAUNCH',
-    badgeColor: 'bg-blue-600',
-    image: '/banner/product2-clean.png',
-    href: '/product/daily-burner-capsule',
-  },
-  {
     name: 'Night Fat Burner',
     badge: 'TRENDING',
     badgeColor: 'bg-teal-600',
@@ -42,13 +35,6 @@ const NAV_PRODUCTS = [
     badgeColor: 'bg-pink-400',
     image: '/banner/product6-white.png',
     href: '/product/beauty-gummies',
-  },
-  {
-    name: 'Sleep Gummies',
-    badge: 'DEEP SLEEP',
-    badgeColor: 'bg-indigo-500',
-    image: '/banner/product5.jpeg',
-    href: '/product/sleep-gummies',
   },
   {
     name: 'Gut Health Gummies',
