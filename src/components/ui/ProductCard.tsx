@@ -5,25 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Star, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { Product } from '@/types/product';
 import { formatCurrency } from '@/utils/format';
 
 interface ProductCardProps {
-  product: {
-    _id: string;
-    name: string;
-    slug: string;
-    price: number;
-    originalPrice?: number;
-    variantPrices?: {
-      '1m'?: number;
-      '2m'?: number;
-      '3m'?: number;
-    };
-    images: string[];
-    category: string;
-    rating: number;
-    benefits?: string[];
-  };
+  product: Product;
   index?: number;
   showQuickAdd?: boolean;
 }
