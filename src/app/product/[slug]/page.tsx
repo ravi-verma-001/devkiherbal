@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Plus, Minus, Heart, Share2, ChevronDown, ChevronUp } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { Product } from '@/types/product';
 import ProductCard from '@/components/ui/ProductCard';
 import ProductSchema from '@/components/ProductSchema';
 import { formatCurrency } from '@/utils/format';
@@ -28,7 +29,12 @@ const defaultProduct = {
   inStock: true,
   stockQuantity: 50,
   category: 'Immunity',
-};
+  variantPrices: {
+    '1m': 29.99,
+    '2m': 54.99,
+    '3m': 79.99,
+  },
+} as Product;
 
 const faqs = [
   { q: 'How many gummies should I take daily?', a: 'Take 2 gummies daily with food, or as directed by your healthcare provider.' },
@@ -41,8 +47,7 @@ export default function ProductPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const { addItem } = useCart();
-
-  const [product, setProduct] = useState<typeof defaultProduct | null>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   interface RelatedProduct {
   _id: string;
   slug: string;
