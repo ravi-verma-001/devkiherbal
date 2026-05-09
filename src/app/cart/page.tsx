@@ -101,25 +101,30 @@ export default function CartPage() {
                   <Link href={`/product/${item.slug}`} className="font-semibold text-gray-900 hover:text-emerald-600 line-clamp-2">
                     {item.name}
                   </Link>
+                  {item.variant && (
+                    <span className="inline-block px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full mt-1">
+                      {item.variant}
+                    </span>
+                  )}
                   <p className="text-emerald-600 font-semibold mt-1">{formatCurrency(item.price)}</p>
                   <div className="flex items-center gap-3 mt-3">
                     <div className="flex items-center border border-slate-200 rounded-lg">
                       <button
-                        onClick={() => updateQuantity(item._id, item.quantity - 1)}
+                        onClick={() => updateQuantity(item._id, item.quantity - 1, item.variant)}
                         className="p-2 hover:bg-slate-50"
                       >
                         <Minus className="h-4 w-4" />
                       </button>
                       <span className="px-3 py-1 font-medium min-w-[2rem] text-center">{item.quantity}</span>
                       <button
-                        onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item._id, item.quantity + 1, item.variant)}
                         className="p-2 hover:bg-slate-50"
                       >
                         <Plus className="h-4 w-4" />
                       </button>
                     </div>
                     <button
-                      onClick={() => removeItem(item._id)}
+                      onClick={() => removeItem(item._id, item.variant)}
                       className="text-red-500 hover:text-red-600 flex items-center gap-1 text-sm"
                     >
                       <Trash2 className="h-4 w-4" />

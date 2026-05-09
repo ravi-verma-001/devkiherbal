@@ -5,6 +5,11 @@ export interface Product {
   description: string;
   price: number;
   originalPrice?: number;
+  variantPrices?: {
+    '1m'?: number;
+    '2m'?: number;
+    '3m'?: number;
+  };
   images: string[];
   category: string;
   benefits: string[];

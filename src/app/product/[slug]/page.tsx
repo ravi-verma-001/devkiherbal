@@ -58,6 +58,7 @@ const [related, setRelated] = useState<RelatedProduct[]>([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<'1m' | '2m' | '3m'>('1m');
 
   useEffect(() => {
     if (!slug) return;
@@ -87,13 +88,15 @@ const [related, setRelated] = useState<RelatedProduct[]>([]);
   const images = p.images?.length ? p.images : [placeholderImage];
 
   const handleAddToCart = () => {
+    const currentPrice = p.variantPrices?.[selectedVariant] || p.price;
     addItem({
       _id: p._id,
       name: p.name,
       slug: p.slug,
-      price: p.price,
+      price: currentPrice,
       image: images[0],
       category: p.category,
+      variant: selectedVariant === '1m' ? '1 Month' : selectedVariant === '2m' ? '2 Months' : '3 Months',
     }, quantity);
   };
 
@@ -182,15 +185,41 @@ const [related, setRelated] = useState<RelatedProduct[]>([]);
               </div>
               <span className="text-gray-600">{p.rating} ({p.reviewCount || reviews.length} reviews)</span>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="text-3xl font-bold text-emerald-600">{formatCurrency(p.price)}</span>
-              {p.originalPrice && p.originalPrice > p.price && (
-                <>
-                  <span className="text-xl text-gray-400 line-through">{formatCurrency(p.originalPrice)}</span>
-                  <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-sm font-semibold">
-                    Save {formatCurrency(p.originalPrice - p.price)}
-                  </span>
-                </>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <span className="text-3xl font-bold text-emerald-600">
+                  {formatCurrency((p.variantPrices?.[selectedVariant] || p.price))}
+                </span>
+                {p.originalPrice && p.originalPrice > (p.variantPrices?.[selectedVariant] || p.price) && (
+                  <>
+                    <span className="text-xl text-gray-400 line-through">{formatCurrency(p.originalPrice)}</span>
+                    <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-sm font-semibold">
+                      Save {formatCurrency(p.originalPrice - (p.variantPrices?.[selectedVariant] || p.price))}
+                    </span>
+                  </>
+                )}
+              </div>
+
+              {p.variantPrices && (
+                <div className="space-y-3">
+                  <span className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Select Duration</span>
+                  <div className="grid grid-cols-3 gap-3">
+                    {(['1m', '2m', '3m'] as const).map((v) => (
+                      <button
+                        key={v}
+                        onClick={() => setSelectedVariant(v)}
+                        className={`py-3 px-2 rounded-xl border-2 transition-all flex flex-col items-center justify-center gap-1 ${
+                          selectedVariant === v
+                            ? 'border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm'
+                            : 'border-slate-200 hover:border-emerald-200 text-gray-600'
+                        }`}
+                      >
+                        <span className="font-bold text-sm">{v === '1m' ? '1 Month' : v === '2m' ? '2 Months' : '3 Months'}</span>
+                        <span className="text-xs opacity-80">{formatCurrency(p.variantPrices![v] || 0)}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
 
@@ -233,9 +262,9 @@ const [related, setRelated] = useState<RelatedProduct[]>([]);
               <div className="flex gap-4">
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 bg-emerald-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-emerald-700 transition-colors"
+                  className="flex-1 bg-emerald-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200"
                 >
-                  Add to Cart — {formatCurrency(p.price * quantity)}
+                  Add to Cart — {formatCurrency((p.variantPrices?.[selectedVariant] || p.price) * quantity)}
                 </button>
                 <button className="p-4 border border-slate-200 rounded-xl hover:bg-slate-50">
                   <Heart className="h-5 w-5" />

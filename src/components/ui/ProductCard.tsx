@@ -14,6 +14,11 @@ interface ProductCardProps {
     slug: string;
     price: number;
     originalPrice?: number;
+    variantPrices?: {
+      '1m'?: number;
+      '2m'?: number;
+      '3m'?: number;
+    };
     images: string[];
     category: string;
     rating: number;
@@ -31,13 +36,15 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
+    const currentPrice = product.variantPrices?.['1m'] || product.price;
     addItem({
       _id: product._id,
       name: product.name,
       slug: product.slug,
-      price: product.price,
+      price: currentPrice,
       image,
       category: product.category,
+      variant: product.variantPrices ? '1 Month' : undefined,
     }, 1);
   };
 
@@ -101,12 +108,19 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
             </div>
             <span className="text-xs md:text-sm text-gray-500 font-bold">{product.rating}</span>
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-4">
-            <span className="text-lg md:text-xl font-black text-emerald-600">{formatCurrency(product.price)}</span>
-            {product.originalPrice && product.originalPrice > product.price && (
-              <span className="text-xs md:text-sm text-gray-400 line-through font-medium">
-                {formatCurrency(product.originalPrice)}
+          <div className="flex flex-col mt-4">
+            <div className="flex items-center gap-2">
+              <span className="text-lg md:text-xl font-black text-emerald-600">
+                {formatCurrency(product.variantPrices?.['1m'] || product.price)}
               </span>
+              {product.originalPrice && product.originalPrice > (product.variantPrices?.['1m'] || product.price) && (
+                <span className="text-xs md:text-sm text-gray-400 line-through font-medium">
+                  {formatCurrency(product.originalPrice)}
+                </span>
+              )}
+            </div>
+            {product.variantPrices && (
+              <span className="text-[10px] text-gray-500 font-medium">Starting from 1 Month plan</span>
             )}
           </div>
         </div>
