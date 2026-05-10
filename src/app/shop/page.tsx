@@ -6,18 +6,7 @@ import { motion } from 'framer-motion';
 import { Filter, Search, X } from 'lucide-react';
 import ProductCard from '@/components/ui/ProductCard';
 
-interface Product {
-  _id: string;
-  name: string;
-  slug: string;
-  price: number;
-  originalPrice?: number;
-  images: string[];
-  category: string;
-  rating: number;
-  benefits?: string[];
-}
-
+import { Product } from '@/types/product';
 import { fallbackProducts } from '@/lib/fallbackProducts';
 
 const CATEGORIES = ['all', 'immunity', 'sleep', 'energy', 'mood', 'digestive'];

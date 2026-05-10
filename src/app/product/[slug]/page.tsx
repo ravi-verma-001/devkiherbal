@@ -48,16 +48,7 @@ export default function ProductPage() {
   const slug = params?.slug as string;
   const { addItem } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
-  interface RelatedProduct {
-  _id: string;
-  slug: string;
-  name: string;
-  price: number;
-  images: string[];
-  category: string;
-  rating: number;
-}
-const [related, setRelated] = useState<RelatedProduct[]>([]);
+  const [related, setRelated] = useState<Product[]>([]);
   const [reviews, setReviews] = useState<{ userName: string; rating: number; comment: string; createdAt: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -75,7 +66,7 @@ const [related, setRelated] = useState<RelatedProduct[]>([]);
       .then(([prod, all]) => {
         setProduct(prod?.slug ? prod : { ...defaultProduct, slug, name: slug.replace(/-/g, ' ') });
         const others = Array.isArray(all) ? all.filter((p: { slug: string }) => p.slug !== slug) : [];
-        setRelated((others.slice(0, 4) as RelatedProduct[]));
+        setRelated((others.slice(0, 4) as Product[]));
         setLoading(false);
       })
       .catch(() => setLoading(false));
