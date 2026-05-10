@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/ui/CartDrawer";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
         <div className={`${dmSans.variable} ${dmSerif.variable} font-sans contents`} suppressHydrationWarning>
           <CartProvider>
             <Header />
+            <CartDrawer />
             <main className="flex-1">
               {children}
             </main>

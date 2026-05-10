@@ -62,7 +62,7 @@ const NAV_PRODUCTS = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
-  const { itemCount } = useCart();
+  const { itemCount, setIsCartOpen } = useCart();
 
   useEffect(() => {
     fetch('/api/auth/me')
@@ -113,7 +113,10 @@ export default function Header() {
 
           {/* Cart on the right */}
           <div className="flex justify-end gap-2 sm:gap-4 items-center">
-            <Link href="/cart" className="relative p-2 text-black hover:bg-slate-50 transition-colors rounded-full">
+            <button 
+              onClick={() => setIsCartOpen(true)} 
+              className="relative p-2 text-black hover:bg-slate-50 transition-colors rounded-full"
+            >
               <ShoppingCart className="h-7 w-7" />
               <AnimatePresence>
                 {itemCount > 0 && (
@@ -127,7 +130,7 @@ export default function Header() {
                   </motion.span>
                 )}
               </AnimatePresence>
-            </Link>
+            </button>
             {user ? (
               <div className="hidden sm:flex items-center gap-1">
                 <Link 

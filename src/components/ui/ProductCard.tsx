@@ -17,7 +17,7 @@ interface ProductCardProps {
 const placeholderImage = 'https://images.unsplash.com/photo-1550572017-edd951aa81a2?w=400&h=400&fit=crop';
 
 export default function ProductCard({ product, index = 0, showQuickAdd = true }: ProductCardProps) {
-  const { addItem } = useCart();
+  const { addItem, setIsCartOpen } = useCart();
   const image = product.images?.[0] || placeholderImage;
 
   const handleQuickAdd = (e: React.MouseEvent) => {
@@ -32,6 +32,7 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
       category: product.category,
       variant: product.variantPrices ? '1 Month' : undefined,
     }, 1);
+    setIsCartOpen(true);
   };
 
   return (

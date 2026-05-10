@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 
 export default function WhatsAppButton() {
-  const phoneNumber = '911234567890'; // Default placeholder, will use a real one if provided
+  const phoneNumber = '916267777534'; // Default placeholder, will use a real one if provided
   const message = 'Hello! I would like to know more about your wellness products.';
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

@@ -9,7 +9,7 @@ const blogPosts = [
     title: 'The Benefits of Shilajit for Energy and Stamina',
     excerpt: 'Discover why this ancient Ayurvedic superfood is gaining popularity in the modern world.',
     date: 'May 10, 2026',
-    image: '/banner/product3.png', // Fallback or placeholder
+    image: '/banner/product8.png',
   },
   {
     id: 2,

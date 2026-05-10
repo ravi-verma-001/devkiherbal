@@ -35,7 +35,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900">Call Us</h3>
-                  <p className="text-gray-600">+91 91234 56789</p>
+                  <p className="text-gray-600">+91 6267777534</p>
                 </div>
               </div>
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <input
                   type="text"
                   className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:ring-2 focus:ring-emerald-500 transition-all outline-none"
-                  placeholder="John Doe"
+                  placeholder="Name"
                 />
               </div>
               <div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 <input
                   type="email"
                   className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:ring-2 focus:ring-emerald-500 transition-all outline-none"
-                  placeholder="john@example.com"
+                  placeholder="Your Email"
                 />
               </div>
               <div>

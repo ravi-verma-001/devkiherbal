@@ -21,6 +21,8 @@ interface CartContextType {
   clearCart: () => void;
   total: number;
   itemCount: number;
+  isCartOpen: boolean;
+  setIsCartOpen: (isOpen: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -30,6 +32,7 @@ const CART_STORAGE_KEY = 'wellness-cart';
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -90,6 +93,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         total,
         itemCount,
+        isCartOpen,
+        setIsCartOpen,
       }}
     >
       {children}

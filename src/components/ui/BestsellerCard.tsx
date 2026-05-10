@@ -26,7 +26,7 @@ interface BestsellerCardProps {
 const placeholderImage = 'https://images.unsplash.com/photo-1550572017-edd951aa81a2?w=500&h=500&fit=crop';
 
 export default function BestsellerCard({ product, index = 0 }: BestsellerCardProps) {
-  const { addItem } = useCart();
+  const { addItem, setIsCartOpen } = useCart();
   const image = product.images?.[0] || placeholderImage;
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -39,6 +39,7 @@ export default function BestsellerCard({ product, index = 0 }: BestsellerCardPro
       image,
       category: product.category,
     }, 1);
+    setIsCartOpen(true);
   };
 
   return (

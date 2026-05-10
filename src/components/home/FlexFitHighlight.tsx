@@ -5,14 +5,29 @@ import Image from 'next/image';
 import { Copy, Check, Info } from 'lucide-react';
 import { useState } from 'react';
 
+import { useCart } from '@/context/CartContext';
+
 export default function FlexFitHighlight() {
   const [copied, setCopied] = useState(false);
+  const { addItem, setIsCartOpen } = useCart();
   const couponCode = 'WHEALTHY';
 
   const handleCopy = () => {
     navigator.clipboard.writeText(couponCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleAddToCart = () => {
+    addItem({
+      _id: 'u-fit-gummies',
+      name: 'U-FIT Gummies',
+      slug: 'u-fit-gummies',
+      price: 1099,
+      image: '/banner/U-FIT-whitebg.png',
+      category: 'weight-management',
+    });
+    setIsCartOpen(true);
   };
 
   return (
@@ -130,7 +145,10 @@ export default function FlexFitHighlight() {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-black text-white py-6 rounded-[2rem] font-black text-xl tracking-widest uppercase hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] mt-4">
+            <button 
+              onClick={handleAddToCart}
+              className="w-full bg-black text-white py-6 rounded-[2rem] font-black text-xl tracking-widest uppercase hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] mt-4"
+            >
               SHOP NOW
             </button>
           </motion.div>
