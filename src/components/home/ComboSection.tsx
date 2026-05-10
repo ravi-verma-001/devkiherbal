@@ -43,7 +43,7 @@ export default function ComboSection() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 md:grid md:grid-cols-4 md:gap-6 [&>div]:min-w-[280px] md:[&>div]:min-w-0 [&>div]:snap-center">
           {combos.map((combo, index) => (
             <ComboCard
               key={index}

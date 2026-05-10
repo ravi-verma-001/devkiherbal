@@ -64,13 +64,13 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
         </motion.div>
 
         {loading ? (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 md:grid md:grid-cols-4 md:gap-6 [&>div]:min-w-[280px] md:[&>div]:min-w-0 [&>div]:snap-center">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="aspect-square bg-slate-100 rounded-2xl md:rounded-[32px] animate-pulse" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 md:grid md:grid-cols-4 md:gap-6 [&>div]:min-w-[280px] md:[&>div]:min-w-0 [&>div]:snap-center">
             {displayProducts.slice(0, 4).map((product, index) => (
               <BestsellerCard key={product._id} product={product} index={index} />
             ))}
