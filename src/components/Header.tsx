@@ -7,60 +7,110 @@ import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const NAV_PRODUCTS = [
-  {
-    name: 'Periods Pain Relief Capsule',
-    badge: 'BESTSELLER',
-    badgeColor: 'bg-red-500',
-    image: '/banner/product9-clean.png',
-    href: '/product/periods-pain-relief-capsule',
-  },
-  {
-    name: 'Night Fat Burner',
-    badge: 'TRENDING',
-    badgeColor: 'bg-teal-600',
-    image: '/banner/product1-clean.png',
-    href: '/product/night-fat-burner',
-  },
-  {
-    name: 'Shilajit Gummies',
-    badge: 'VITALITY',
-    badgeColor: 'bg-amber-800',
-    image: '/banner/product8.png',
-    href: '/product/shilajit-gummies',
-  },
+const ALL_PRODUCTS = [
   {
     name: 'Beauty Gummies',
-    badge: 'GLOW',
-    badgeColor: 'bg-pink-400',
-    image: '/banner/product6-white.png',
+    image: '/banner/GlowBerry.png',
     href: '/product/beauty-gummies',
   },
   {
-    name: 'Gut Health Gummies',
-    badge: 'DIGESTION',
+    name: 'Anti-Acne Collagen',
+    badge: 'Price Drop',
+    badgeColor: 'bg-[#2d3260]',
+    imageBg: 'bg-[#fef3c7]',
+    image: '/banner/product5.jpeg',
+    href: '/product/anti-acne-collagen',
+  },
+  {
+    name: 'Beauty Collagen',
+    badge: 'Price Drop',
+    badgeColor: 'bg-[#cf6040]',
+    imageBg: 'bg-[#ffedd5]',
+    image: '/banner/U-F.png',
+    href: '/product/beauty-collagen',
+  },
+  {
+    name: 'Gluta-Glow Gummies',
+    image: '/banner/DailyBurner.png',
+    href: '/product/gluta-glow-gummies',
+  },
+  {
+    name: 'GutFix Health Gummies',
+    image: '/banner/GutFix.png',
+    href: '/product/gutfix-health-gummies',
+  },
+  {
+    name: 'Sleep Gummies',
+    image: '/banner/NightReliefNew.png',
+    href: '/product/sleep-gummies',
+  },
+  {
+    name: 'Daily Electrolytes',
+    badge: 'NEW LAUNCH',
+    badgeColor: 'bg-[#f5a623]',
+    image: '/banner/U-F.png',
+    href: '/product/daily-electrolytes',
+  },
+  {
+    name: 'Night Burner',
+    badge: 'BESTSELLER',
+    badgeColor: 'bg-[#1e40af]',
+    image: '/banner/NightBurner.png',
+    href: '/product/night-burner',
+  },
+  {
+    name: 'Daily Burner',
+    badge: 'BESTSELLER',
+    badgeColor: 'bg-[#dc2626]',
+    image: '/banner/DailyBurner.png',
+    href: '/product/daily-burner',
+  },
+  {
+    name: 'Lung & Liver Detox',
+    badge: 'TRENDING',
+    badgeColor: 'bg-[#0f766e]',
+    image: '/banner/F-F.png',
+    href: '/product/lung-liver-detox',
+  },
+  {
+    name: 'Shilajit Gummies',
+    image: '/banner/ShilajitNew.png',
+    href: '/product/shilajit-gummies',
+  },
+  {
+    name: 'MagBliss Magnesium',
+    image: '/banner/PeriodPainNew.png',
+    href: '/product/magbliss-magnesium',
+  }
+];
+
+const COMBO_PRODUCTS = [
+  {
+    name: 'Stress-Free Sleep Combo',
+    badge: 'SAVE 30%',
     badgeColor: 'bg-green-600',
-    image: '/banner/product7.jpeg',
-    href: '/product/gut-health-gummies',
+    image: '/banner/combo3.png',
+    href: '/product/stress-free-sleep-combo',
   },
   {
-    name: 'MASS GAINER COMBO',
-    badge: 'BUILDER',
-    badgeColor: 'bg-blue-700',
-    image: '/banner/combo-beauty-sleep.jpeg',
-    href: '/product/mass-gainer-builder-combo',
+    name: 'Beauty & Sleep Combo',
+    badge: 'SAVE 25%',
+    badgeColor: 'bg-green-600',
+    image: '/banner/combo2.png',
+    href: '/product/beauty-sleep-combo',
   },
   {
-    name: 'Shilajit & Beauty Combo',
-    badge: 'WELLNESS',
-    badgeColor: 'bg-rose-500',
-    image: '/banner/combo-feel-good.jpeg',
-    href: '/product/shilajit-beauty-gummies-combo',
+    name: 'Skin & Hair Combo',
+    badge: 'SAVE 35%',
+    badgeColor: 'bg-green-600',
+    image: '/banner/combo1.png',
+    href: '/product/skin-hair-combo',
   },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<'all' | 'combo'>('all');
   const [user, setUser] = useState<any>(null);
   const { itemCount, setIsCartOpen } = useCart();
 
@@ -82,13 +132,15 @@ export default function Header() {
     }
   }, [isMenuOpen]);
 
+  const displayedProducts = activeTab === 'all' ? ALL_PRODUCTS : COMBO_PRODUCTS;
+
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-100 font-sans">
       <div className="bg-black text-white py-2 text-center text-xs font-medium tracking-wide">
         Free gift on orders above Rs. 1999! 🎁
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 items-center h-20 md:h-24">
+        <div className="grid grid-cols-3 items-center h-16 md:h-[72px]">
           {/* Menu on the left */}
           <div className="flex justify-start">
             <button
@@ -96,15 +148,15 @@ export default function Header() {
               className="p-2 text-black hover:bg-slate-50 transition-colors rounded-full"
               aria-label="Toggle menu"
             >
-              <Menu className="h-7 w-7" />
+              <Menu className="h-6 w-6 md:h-7 md:w-7" />
             </button>
           </div>
 
           {/* Logo center */}
           <div className="flex justify-center flex-1">
-            <Link href="/" className="relative block h-16 md:h-20 transition-transform hover:scale-105 active:scale-95 duration-300">
+            <Link href="/" className="relative block h-[52px] md:h-[62px] transition-transform hover:scale-105 active:scale-95 duration-300">
               <img 
-                src="/banner/logo.png?v=2" 
+                src="/banner/Logo-Devki.png" 
                 alt="Wellness Logo" 
                 className="h-full w-auto object-contain mx-auto"
               />
@@ -112,19 +164,19 @@ export default function Header() {
           </div>
 
           {/* Cart on the right */}
-          <div className="flex justify-end gap-2 sm:gap-4 items-center">
+          <div className="flex justify-end gap-1 sm:gap-2 items-center">
             <button 
               onClick={() => setIsCartOpen(true)} 
               className="relative p-2 text-black hover:bg-slate-50 transition-colors rounded-full"
             >
-              <ShoppingCart className="h-7 w-7" />
+              <ShoppingCart className="h-6 w-6 md:h-7 md:w-7" />
               <AnimatePresence>
                 {itemCount > 0 && (
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
-                    className="absolute top-0.5 right-0.5 bg-black text-white text-[10px] font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center border-2 border-white"
+                    className="absolute top-0 right-0 bg-black text-white text-[9px] font-bold min-w-[16px] h-[16px] rounded-full flex items-center justify-center border-[1.5px] border-white"
                   >
                     {itemCount}
                   </motion.span>
@@ -168,10 +220,10 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '-100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-[#F8F8F8] flex flex-col h-screen overflow-hidden"
+            className="fixed inset-0 z-[60] bg-[#f5f5f5] flex flex-col h-screen overflow-hidden"
           >
             {/* Menu Header */}
-            <div className="bg-white px-4 h-20 md:h-24 flex items-center border-b border-slate-100 shrink-0">
+            <div className="bg-white px-4 h-20 flex items-center border-b border-slate-100 shrink-0 shadow-sm z-10">
               <div className="grid grid-cols-3 w-full items-center">
                 <button
                   onClick={() => setIsMenuOpen(false)}
@@ -181,9 +233,9 @@ export default function Header() {
                   <X className="h-8 w-8" />
                 </button>
                 <div className="flex justify-center flex-1">
-                  <div className="h-16 md:h-20 py-2">
+                  <div className="h-16 py-0.5">
                     <img 
-                      src="/banner/logo.png?v=2" 
+                      src="/banner/Logo-Devki.png" 
                       alt="Wellness Logo" 
                       className="h-full w-auto object-contain mx-auto"
                     />
@@ -193,59 +245,89 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-2 py-4 pb-12">
-              <div className="grid grid-cols-2 gap-3 max-w-3xl mx-auto">
-                {NAV_PRODUCTS.map((product, index) => (
-                  <motion.div
-                    key={product.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + index * 0.05 }}
+            <div className="flex-1 overflow-y-auto pb-12">
+              <div className="px-4 py-4 max-w-3xl mx-auto">
+                {/* Promo Banner */}
+                <Link href="/bundle" onClick={() => setIsMenuOpen(false)} className="block mb-5 rounded-xl overflow-hidden shadow-sm">
+                  <img src="/banner/slidder-banner.png" alt="Build Your Wellness Bundle" className="w-full h-auto object-cover" />
+                </Link>
+                
+                {/* Toggle Buttons */}
+                <div className="flex bg-white rounded-xl p-1 mb-5 shadow-sm border border-gray-100">
+                  <button 
+                    className={`flex-1 py-2.5 text-[14px] font-bold rounded-lg transition-colors ${activeTab === 'all' ? 'bg-[#2d3282] text-white' : 'text-gray-700'}`}
+                    onClick={() => setActiveTab('all')}
                   >
-                    <Link
-                      href={product.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-3 bg-white rounded-[20px] shadow-[0_2px_10px_rgba(0,0,0,0.04)] active:scale-95 transition-transform h-full"
+                    All Products
+                  </button>
+                  <button 
+                    className={`flex-1 py-2.5 text-[14px] font-bold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${activeTab === 'combo' ? 'bg-[#2d3282] text-white' : 'text-gray-700'}`}
+                    onClick={() => setActiveTab('combo')}
+                  >
+                    Combo
+                    <span className="bg-green-600 text-white text-[9px] px-1.5 py-0.5 rounded font-bold whitespace-nowrap">SAVE UPTO 40%</span>
+                  </button>
+                </div>
+
+                {/* Products Grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  {displayedProducts.map((product, index) => (
+                    <motion.div
+                      key={product.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 + index * 0.03 }}
                     >
-                      <div className="flex flex-col gap-1.5 max-w-[65%]">
-                        <span className={`${product.badgeColor} text-white text-[8px] font-bold px-1.5 py-0.5 rounded-sm w-fit tracking-wider uppercase`}>
-                          {product.badge}
-                        </span>
-                        <h3 className="text-[13px] font-bold text-gray-800 leading-tight">
-                          {product.name}
-                        </h3>
-                      </div>
-                      <div className="relative w-14 h-14 shrink-0">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={product.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="flex items-center justify-between p-4 bg-white rounded-3xl shadow-sm active:scale-95 transition-transform h-full overflow-hidden relative"
+                      >
+                        <div className="flex flex-col gap-1.5 max-w-[60%] z-10">
+                          {product.badge && (
+                            <span className={`${product.badgeColor} text-white text-[8px] font-bold px-1.5 py-0.5 rounded-md w-fit tracking-wider uppercase`}>
+                              {product.badge}
+                            </span>
+                          )}
+                          <h3 className="text-[15px] font-black text-gray-800 leading-tight">
+                            {product.name}
+                          </h3>
+                        </div>
+                        <div className="relative w-20 h-20 shrink-0 flex items-center justify-center">
+                          {(product as any).imageBg && (
+                            <div className={`absolute right-[-15px] top-1/2 -translate-y-1/2 w-24 h-24 rounded-full ${(product as any).imageBg} opacity-80 pointer-events-none`}></div>
+                          )}
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="relative z-10 w-full h-full object-contain"
+                          />
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
                 
                 {/* Additional Links */}
-                <div className="col-span-2 mt-6 pt-6 border-t border-slate-100">
-                  <nav className="flex flex-col">
-                    <Link href="/shop" onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group border-b border-slate-50">
-                      Browse All Catalog <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                  <nav className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm">
+                    <Link href="/shop" onClick={() => setIsMenuOpen(false)} className="text-[15px] font-semibold py-4 px-4 flex justify-between items-center group border-b border-slate-50 hover:bg-slate-50">
+                      Browse All Catalog <span className="text-slate-300 group-hover:text-black transition-colors text-xl font-light">→</span>
                     </Link>
-                    <Link href="/#benefits" onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group border-b border-slate-50">
-                      Our Benefits <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
+                    <Link href="/#benefits" onClick={() => setIsMenuOpen(false)} className="text-[15px] font-semibold py-4 px-4 flex justify-between items-center group border-b border-slate-50 hover:bg-slate-50">
+                      Our Benefits <span className="text-slate-300 group-hover:text-black transition-colors text-xl font-light">→</span>
                     </Link>
                     {!user ? (
-                      <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group">
-                        Login / Sign Up <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
+                      <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-[15px] font-semibold py-4 px-4 flex justify-between items-center group hover:bg-slate-50">
+                        Login / Sign Up <span className="text-slate-300 group-hover:text-black transition-colors text-xl font-light">→</span>
                       </Link>
                     ) : (
                       <>
-                        <Link href={user.role === 'admin' ? '/admin' : '/profile'} onClick={() => setIsMenuOpen(false)} className="text-[17px] font-semibold py-4 px-2 flex justify-between items-center group border-b border-slate-50">
-                          {user.role === 'admin' ? 'Admin Portal' : 'My Profile'} <span className="text-slate-300 group-hover:text-black transition-colors text-2xl font-light">→</span>
+                        <Link href={user.role === 'admin' ? '/admin' : '/profile'} onClick={() => setIsMenuOpen(false)} className="text-[15px] font-semibold py-4 px-4 flex justify-between items-center group border-b border-slate-50 hover:bg-slate-50">
+                          {user.role === 'admin' ? 'Admin Portal' : 'My Profile'} <span className="text-slate-300 group-hover:text-black transition-colors text-xl font-light">→</span>
                         </Link>
-                        <button onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.reload(); }} className="w-full text-left text-[17px] font-semibold text-red-500 py-4 px-2 flex justify-between items-center group">
-                          Logout <span className="text-slate-300 group-hover:text-red-500 transition-colors text-2xl font-light">→</span>
+                        <button onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.reload(); }} className="w-full text-left text-[15px] font-semibold text-red-500 py-4 px-4 flex justify-between items-center group hover:bg-slate-50">
+                          Logout <span className="text-slate-300 group-hover:text-red-500 transition-colors text-xl font-light">→</span>
                         </button>
                       </>
                     )}
@@ -259,3 +341,4 @@ export default function Header() {
     </header>
   );
 }
+

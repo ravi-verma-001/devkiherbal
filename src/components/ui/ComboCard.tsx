@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface ComboCardProps {
@@ -21,29 +20,28 @@ export default function ComboCard({ title, image, gradient, href, index }: Combo
       transition={{ delay: index * 0.1 }}
       className="relative group"
     >
-      <Link href={href} className="block group">
-        <div className={`aspect-square rounded-[1.5rem] md:rounded-[2.5rem] bg-gradient-to-br ${gradient} p-4 md:p-8 overflow-hidden relative shadow-lg group-hover:shadow-2xl transition-all duration-500`}>
+      <Link href={href} className="block">
+        <div className={`aspect-[1.18/1] rounded-[2.5rem] bg-gradient-to-b ${gradient} overflow-hidden relative shadow-[0_15px_30px_rgba(0,0,0,0.08)] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] transition-all duration-500 transform group-hover:-translate-y-1`}>
           {/* Card Title */}
-          <h3 className="text-lg md:text-3xl font-black text-white leading-tight drop-shadow-md z-10 relative max-w-[90%] md:max-w-[80%]">
+          <h3 className="absolute top-6 left-6 right-6 text-white text-lg md:text-xl font-extrabold tracking-tight whitespace-pre-line leading-[1.25] z-10">
             {title}
           </h3>
 
-          {/* Product Image */}
-          <div className="absolute bottom-0 left-0 right-0 h-3/5 w-full transition-transform duration-500 group-hover:scale-110">
-            <div className="relative w-full h-full">
-              <Image
+          {/* Product Image - Bottom Centered */}
+          <div className="absolute bottom-0 left-4 right-4 top-16 flex items-end justify-center overflow-hidden">
+            <div className={`relative w-[90%] h-[95%] transition-transform duration-500 group-hover:scale-105 ${
+              image.includes('combo3') ? 'translate-y-[-7%]' : 'translate-y-[8%]'
+            }`}>
+              <img
                 src={image}
-                alt={title}
-                fill
-                className="object-contain object-bottom mix-blend-multiply"
+                alt={title.replace('\n', ' ')}
+                className="absolute inset-0 w-full h-full object-contain object-bottom"
               />
             </div>
           </div>
-          
-          {/* Subtle Glow Effect on Hover */}
-          <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
       </Link>
     </motion.div>
   );
 }
+

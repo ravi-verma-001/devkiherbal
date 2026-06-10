@@ -109,7 +109,7 @@ export default function Hero() {
                   src={currentSlide.image}
                   alt={currentSlide.headline || 'Guruji Ayurveda banner'}
                   fill
-                  className="object-contain sm:object-cover"
+                  className="object-cover"
                   priority={activeIndex === 0}
                   loading={activeIndex === 0 ? 'eager' : 'lazy'}
                   sizes="(max-width: 768px) 100vw, 1100px"
@@ -136,24 +136,6 @@ export default function Hero() {
             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
-          {/* Pagination dots */}
-          <div className="absolute inset-x-0 bottom-4 sm:bottom-5 flex justify-center">
-            <div className="flex items-center gap-2.5 rounded-full bg-black/30 px-3 py-1.5 backdrop-blur">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  aria-label={`Go to slide ${index + 1}`}
-                  onClick={() => goTo(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === activeIndex
-                      ? 'w-6 bg-amber-300'
-                      : 'w-2 bg-emerald-100/90 hover:bg-amber-200'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

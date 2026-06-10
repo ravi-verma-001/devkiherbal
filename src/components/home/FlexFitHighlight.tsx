@@ -24,7 +24,7 @@ export default function FlexFitHighlight() {
       name: 'U-FIT Gummies',
       slug: 'u-fit-gummies',
       price: 1099,
-      image: '/banner/U-FIT-whitebg.png',
+      image: '/banner/U-F.png',
       category: 'weight-management',
     });
     setIsCartOpen(true);
@@ -42,7 +42,7 @@ export default function FlexFitHighlight() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="bg-white rounded-[2.5rem] p-4 md:p-6 shadow-xl relative overflow-hidden aspect-square flex items-center justify-center">
+            <div className="bg-white rounded-[2.5rem] shadow-xl relative overflow-hidden aspect-square flex items-center justify-center">
               {/* Badges */}
               <div className="absolute top-6 right-6 z-10 flex flex-col gap-4 items-end">
                 <div className="w-16 h-16 bg-[#2D9B63] rounded-full flex flex-col items-center justify-center text-white text-center p-2 shadow-lg border-2 border-white">
@@ -52,12 +52,12 @@ export default function FlexFitHighlight() {
               </div>
 
               {/* Product Image */}
-              <div className="relative w-full h-full max-w-[550px] max-h-[550px]">
+              <div className="relative w-full h-full">
                 <Image
-                  src="/banner/U-FIT-whitebg.png"
+                  src="/banner/U-F.png"
                   alt="U-FIT Gummies"
                   fill
-                  className="object-contain transition-transform duration-500 hover:scale-110 scale-105 ml-4 mix-blend-multiply"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
 

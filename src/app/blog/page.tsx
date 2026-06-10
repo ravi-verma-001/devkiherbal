@@ -9,7 +9,7 @@ const blogPosts = [
     title: 'The Benefits of Shilajit for Energy and Stamina',
     excerpt: 'Discover why this ancient Ayurvedic superfood is gaining popularity in the modern world.',
     date: 'May 10, 2026',
-    image: '/banner/product8.png',
+    image: '/banner/ShilajitNew.png',
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const blogPosts = [
     title: 'Understanding Gut Health: Why it Matters',
     excerpt: 'Your gut is your second brain. Learn how to keep it happy and healthy.',
     date: 'April 28, 2026',
-    image: '/banner/product7.jpeg',
+    image: '/banner/NightReliefNew.png',
   }
 ];
 

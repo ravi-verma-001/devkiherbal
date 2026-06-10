@@ -67,7 +67,7 @@ export default function LoginPage() {
       >
         <div className="text-center mb-8">
           <Link href="/">
-            <img src="/banner/logo.png?v=2" alt="Logo" className="h-12 mx-auto mb-6 object-contain" />
+            <img src="/banner/Logo-Devki.png" alt="Logo" className="h-16 mx-auto mb-6 object-contain" />
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
             {isLogin ? 'Welcome Back' : 'Create Account'}

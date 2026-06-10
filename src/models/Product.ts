@@ -6,6 +6,11 @@ export interface IProduct extends Document {
   description: string;
   price: number;
   originalPrice?: number;
+  variantPrices?: {
+    '1m'?: number;
+    '2m'?: number;
+    '3m'?: number;
+  };
   images: string[];
   category: string;
   benefits: string[];
@@ -25,6 +30,11 @@ const ProductSchema: Schema = new Schema({
   description: { type: String, required: true },
   price: { type: Number, required: true },
   originalPrice: { type: Number },
+  variantPrices: {
+    '1m': { type: Number },
+    '2m': { type: Number },
+    '3m': { type: Number },
+  },
   images: [{ type: String }],
   category: { type: String, required: true },
   benefits: [{ type: String }],

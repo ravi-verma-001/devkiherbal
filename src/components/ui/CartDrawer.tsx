@@ -88,10 +88,10 @@ export default function CartDrawer() {
                   <div key={`${item._id}-${item.variant}`} className="flex gap-4 p-3 bg-gray-50 rounded-lg relative">
                     <div className="relative w-20 h-20 bg-white rounded-md overflow-hidden flex-shrink-0">
                       <Image
-                        src={item.image || '/banner/product1-clean.png'}
+                        src={item.image || '/banner/F-F.png'}
                         alt={item.name}
                         fill
-                        className="object-contain p-2"
+                        className="object-cover"
                       />
                     </div>
                     

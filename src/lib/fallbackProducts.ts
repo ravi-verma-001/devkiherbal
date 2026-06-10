@@ -11,7 +11,7 @@ export const fallbackProducts = [
       '2m': 1499,
       '3m': 2100
     },
-    images: ['/banner/product2-clean.png', '/banner/product2-nobg.png', '/banner/DailyBurner.png'],
+    images: ['/banner/U-F.png'],
     category: 'Weight Management',
     benefits: ['Burn Calories', 'Manage Cravings', 'Boost Metabolism'],
     ingredients: ['Green Tea Extract', 'Garcinia Cambogia', 'L-Carnitine'],
@@ -33,7 +33,7 @@ export const fallbackProducts = [
       '2m': 1499,
       '3m': 2100
     },
-    images: ['/banner/product1-clean.png', '/banner/product1-nobg.png'],
+    images: ['/banner/F-F.png'],
     category: 'Weight Management',
     benefits: ['Muscle Recovery', 'Improved Flexibility', 'Joint Support'],
     ingredients: ['Collagen', 'Glucosamine', 'Turmeric'],
@@ -41,7 +41,7 @@ export const fallbackProducts = [
     reviewCount: 856,
     inStock: true,
     stockQuantity: 500,
-    featured: false,
+    featured: true,
   },
   {
     _id: '3',
@@ -55,7 +55,15 @@ export const fallbackProducts = [
       '2m': 1349,
       '3m': 1899
     },
-    images: ['/banner/product9-clean.png', '/banner/product9-nobg.png', '/banner/PeriodRelief.png'],
+    images: [
+      '/banner/PeriodPainNew.png',
+      '/banner/periods3.jpeg',
+      '/banner/periods4.jpeg',
+      '/banner/periods5.jpeg',
+      '/banner/periods6.jpeg',
+      '/banner/periods7.jpeg',
+      '/banner/periods8.jpeg'
+    ],
     category: 'Women Health',
     benefits: ['Relieves Cramps', 'Balances Mood', 'Reduces Inflammation'],
     ingredients: ['Lodhra', 'Ashoka', 'Shatavari'],
@@ -77,7 +85,14 @@ export const fallbackProducts = [
       '2m': 1499,
       '3m': 2249
     },
-    images: ['/banner/product8.png'],
+    images: [
+      '/banner/ShilajitNew.png',
+      '/banner/shilijit1.jpeg',
+      '/banner/shilijit2.jpeg',
+      '/banner/shilijit3.jpeg',
+      '/banner/shilijit4.jpeg',
+      '/banner/shilijit5.jpeg'
+    ],
     category: 'Performance',
     benefits: ['Enhances Vitality', 'Improves Performance', 'Boosts Energy'],
     ingredients: ['Shilajit Extract', 'Ashwagandha', 'Gold Bhasma'],
@@ -99,7 +114,15 @@ export const fallbackProducts = [
       '2m': 1249,
       '3m': 1849
     },
-    images: ['/banner/product7.jpeg'],
+    images: [
+      '/banner/NightReliefNew.png',
+      '/banner/nightrelief1.jpeg',
+      '/banner/nightrelief2.jpeg',
+      '/banner/nightrelief3.jpeg',
+      '/banner/nightrelief4.jpeg',
+      '/banner/nightrelief5.jpeg',
+      '/banner/nightrelief6.jpeg'
+    ],
     category: 'Sleep & Relaxation',
     benefits: ['Restful Sleep', 'Stress Reduction', 'Calm Mind'],
     ingredients: ['Melatonin', 'L-Theanine', 'Chamomile'],
@@ -121,7 +144,7 @@ export const fallbackProducts = [
       '2m': 1449,
       '3m': 1979
     },
-    images: ['/banner/product6-white.png'],
+    images: ['/banner/GlowBerry.png'],
     category: 'Beauty',
     benefits: ['Skin Glow', 'Hair Strength', 'Nail Health'],
     ingredients: ['Biotin', 'Vitamin C', 'Vitamin E', 'Zinc'],
@@ -165,7 +188,7 @@ export const fallbackProducts = [
       '2m': 1449,
       '3m': 2150
     },
-    images: ['/banner/combo-feel-good.jpeg'],
+    images: ['/banner/MassGainer.png'],
     category: 'Muscle Gain',
     benefits: ['Calorie Dense', 'High Protein', 'Fast Mass Gain'],
     ingredients: ['Complex Carbs', 'Protein Blend', 'Vitamins'],
@@ -173,6 +196,28 @@ export const fallbackProducts = [
     reviewCount: 560,
     inStock: true,
     stockQuantity: 150,
+    featured: true,
+  },
+  {
+    _id: '9',
+    name: 'GutFix Health Gummies',
+    slug: 'gutfix-health-gummies',
+    description: 'Optimize your digestive system, ease bloating, and balance your gut microbiome with our premium probiotic-rich GutFix Health Gummies.',
+    price: 899,
+    originalPrice: 1399,
+    variantPrices: {
+      '1m': 899,
+      '2m': 1599,
+      '3m': 2299
+    },
+    images: ['/banner/GutFix.png'],
+    category: 'Digestive',
+    benefits: ['Balances Gut Flora', 'Improves Digestion', 'Reduces Bloating'],
+    ingredients: ['Bacillus Coagulans (Probiotic)', 'Chicory Root Fiber (Prebiotic)', 'Apple Cider Vinegar'],
+    rating: 4.8,
+    reviewCount: 394,
+    inStock: true,
+    stockQuantity: 500,
     featured: true,
   },
 ];

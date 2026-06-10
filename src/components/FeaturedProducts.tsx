@@ -38,7 +38,29 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
       .catch(() => setLoading(false));
   }, [initialProducts]);
 
-  const displayProducts = products.length > 0 ? products : (fallbackProducts as Product[]);
+  const desiredOrder = ['u-fit', 'fit-flex', 'shilajit-gold', 'period-pain-relief'];
+  
+  const orderedProducts: Product[] = [];
+  desiredOrder.forEach(slug => {
+    let found = products.find(p => p.slug === slug);
+    if (!found) {
+      found = fallbackProducts.find(p => p.slug === slug) as Product;
+    }
+    if (found) {
+      orderedProducts.push(found);
+    }
+  });
+
+  let displayProducts = orderedProducts.length > 0 ? orderedProducts : (products.length > 0 ? products : fallbackProducts as Product[]);
+
+  // Ensure we have at least 4 products by filling from fallback products if needed
+  if (displayProducts.length < 4) {
+    fallbackProducts.forEach((fbProd) => {
+      if (displayProducts.length < 4 && !displayProducts.some(p => p.slug === fbProd.slug)) {
+        displayProducts.push(fbProd as Product);
+      }
+    });
+  }
 
   return (
     <section id="featured" className="py-20 bg-[#F9F9F9]">
@@ -47,20 +69,18 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-10 flex flex-col items-center"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-[28px] md:text-[40px] font-black text-black mb-2 tracking-tight leading-tight">
             Our Bestsellers
           </h2>
           
-          <div className="flex justify-center mb-12">
-            <Link
-              href="/shop"
-              className="px-8 py-2.5 bg-[#6B2C58] rounded-full text-sm font-black text-white hover:bg-[#5a244a] transition-colors shadow-md uppercase tracking-widest"
-            >
-              Explore All
-            </Link>
-          </div>
+          <Link
+            href="/shop"
+            className="px-6 py-1 border border-[#6B2C58] text-[#6B2C58] rounded-[24px] text-[15px] md:text-[16px] font-medium hover:bg-[#6B2C58] hover:text-white transition-colors"
+          >
+            Explore All
+          </Link>
         </motion.div>
 
         {loading ? (

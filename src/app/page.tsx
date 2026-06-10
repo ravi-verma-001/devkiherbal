@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import CategoryGoals from '@/components/home/CategoryGoals';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import DoctorTestimonials from '@/components/home/DoctorTestimonials';
 import ProductBenefits from '@/components/home/ProductBenefits';
@@ -26,6 +27,7 @@ export default async function Home() {
   return (
     <div>
       <Hero />
+      <CategoryGoals />
       <FeaturedProducts initialProducts={featuredProducts} />
       <FlexFitHighlight />
       <section id="benefits">

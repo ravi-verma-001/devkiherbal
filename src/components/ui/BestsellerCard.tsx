@@ -48,67 +48,47 @@ export default function BestsellerCard({ product, index = 0 }: BestsellerCardPro
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group relative flex flex-col h-full bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100"
+      className="group relative flex flex-col h-full bg-[#f3f3f3] rounded-[24px] p-3"
     >
-      {/* Bestseller Badge */}
-      <div className="absolute top-5 left-5 z-10">
-        <div className="px-3 py-1 bg-black/80 backdrop-blur-md rounded-full">
-          <p className="text-[10px] font-black text-white tracking-widest uppercase">
-            Bestseller
-          </p>
+      <Link href={`/product/${product.slug}`} className="flex flex-col flex-1">
+        {/* Image Container */}
+        <div className="relative aspect-square w-full bg-white rounded-[20px] overflow-hidden">
+          <img
+            src={image}
+            alt={product.name}
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="eager"
+          />
         </div>
-      </div>
-
-      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/5] overflow-hidden bg-[#F8F9FA]">
-        {/* Subtle background gradient splash */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#F1E4EE]/30 opacity-60" />
         
-        <img
-          src={image}
-          alt={product.name}
-          className="absolute inset-0 w-full h-full object-contain p-8 transition-transform duration-700 group-hover:scale-110"
-          loading="eager"
-        />
-      </Link>
-
-      <div className="p-4 md:p-6 flex flex-col flex-1">
-        <div className="mb-2 md:mb-4">
-          <p className="text-[9px] md:text-[10px] font-black text-[#6B2C58] tracking-widest uppercase mb-1 opacity-70">
-            {product.category}
-          </p>
-          <h3 className="text-base md:text-xl font-extrabold text-gray-900 leading-tight group-hover:text-[#6B2C58] transition-colors line-clamp-2">
+        {/* Details */}
+        <div className="pt-4 pb-2 flex-1 flex flex-col px-1">
+          {/* Title */}
+          <h3 className="text-[24px] font-black text-black leading-[1.15] mb-2 line-clamp-2">
             {product.name}
           </h3>
-        </div>
-        
-        <div className="flex items-center gap-1 md:gap-2 mb-4 md:mb-6">
-          <div className="flex bg-amber-50 px-1.5 py-0.5 rounded-full items-center gap-1">
-            <Star className="h-2.5 w-2.5 text-amber-500 fill-amber-500" />
-            <span className="text-[10px] md:text-[11px] font-black text-amber-700">
-              {product.rating}
+          
+          {/* Rating */}
+          <div className="flex items-center gap-1.5 mb-2.5">
+            <Star className="h-4 w-4 text-[#fbbc04] fill-[#fbbc04] stroke-none" />
+            <span className="text-[14px] text-gray-500 font-bold">
+              {product.rating}/5({product.reviewCount || 1142})
             </span>
           </div>
-          <span className="text-[10px] md:text-[11px] font-bold text-gray-400">
-            ({product.reviewCount || '1k+'})
-          </span>
-        </div>
 
-        <div className="mt-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4">
-          <div className="flex flex-col">
-            <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Price</p>
-            <p className="text-lg md:text-xl font-black text-gray-900">
-              {formatCurrency(product.price)}
-            </p>
+          {/* Price */}
+          <div className="text-[19px] font-black text-black mb-3">
+            Rs. {product.price}
           </div>
-          
-          <button
-            onClick={handleAddToCart}
-            className="w-full sm:flex-1 bg-black text-white py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[10px] md:text-[11px] tracking-widest uppercase hover:bg-[#6B2C58] transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95"
-          >
-            Add to Cart
-          </button>
         </div>
-      </div>
+      </Link>
+
+      <button
+        onClick={handleAddToCart}
+        className="w-full mt-1 bg-black hover:bg-gray-800 text-white font-extrabold py-4 rounded-[16px] text-[13px] md:text-[14px] uppercase tracking-wider transition-all active:scale-95"
+      >
+        ADD TO CART
+      </button>
     </motion.div>
   );
 }

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const testimonials = [
   {
@@ -65,46 +66,25 @@ export default function DoctorTestimonials() {
   const canGoPrev = currentIndex > 0;
 
   return (
-    <section className="py-24 bg-[#F8F9FA]">
+    <section className="py-14 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#6B2C58]/10 text-[#6B2C58] text-sm font-bold tracking-wide uppercase mb-6 border border-[#6B2C58]/20 shadow-sm"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-8 flex flex-col items-center"
+        >
+          <h2 className="text-[28px] md:text-[40px] font-black text-black mb-2 tracking-tight leading-tight">
+            Testimonials & Reviews
+          </h2>
+          
+          <Link
+            href="/shop"
+            className="px-6 py-1 border border-[#6B2C58] text-[#6B2C58] rounded-[24px] text-[15px] md:text-[16px] font-medium hover:bg-[#6B2C58] hover:text-white transition-colors"
           >
-            <Star className="h-4 w-4 fill-[#6B2C58]" />
-            Testimonials
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-black mb-6 tracking-tight"
-          >
-            <span className="bg-gradient-to-r from-gray-900 via-[#6B2C58] to-gray-900 bg-clip-text text-transparent">
-              Reviews
-            </span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-gray-500 max-w-2xl mx-auto font-medium"
-          >
-            Hear what others have to say about us
-          </motion.p>
-          <motion.div 
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="h-1 w-24 bg-[#6B2C58] mx-auto mt-8 rounded-full shadow-sm"
-          />
-        </div>
+            Explore All
+          </Link>
+        </motion.div>
 
         <div className="relative overflow-hidden px-2">
           <motion.div
@@ -117,15 +97,15 @@ export default function DoctorTestimonials() {
                 key={t.name}
                 className={`flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]`}
               >
-                <div className="bg-white rounded-[32px] p-8 h-full flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100/50">
+                <div className="bg-white rounded-[24px] p-6 h-full flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100/50">
                   <div className="flex-grow">
-                    <p className="text-[#333333] text-lg leading-relaxed mb-8">
+                    <p className="text-[#333333] text-base leading-relaxed mb-5">
                       {t.quote}
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-4 mt-auto">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#6B2C58]/10">
+                  <div className="flex items-center gap-3 mt-auto">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#6B2C58]/10">
                       <Image
                         src={t.image}
                         alt={t.name}
@@ -134,8 +114,8 @@ export default function DoctorTestimonials() {
                       />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-lg leading-tight">{t.name}</h4>
-                      <p className="text-gray-500 text-sm">{t.title}</p>
+                      <h4 className="font-bold text-gray-900 text-[16px] leading-tight">{t.name}</h4>
+                      <p className="text-gray-500 text-xs">{t.title}</p>
                     </div>
                   </div>
                 </div>
@@ -144,28 +124,28 @@ export default function DoctorTestimonials() {
           </motion.div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-12">
+        <div className="flex justify-center gap-4 mt-6">
           <button
             onClick={prev}
             disabled={!canGoPrev}
-            className={`p-3 rounded-full border-2 transition-all ${
+            className={`p-2.5 rounded-full border-2 transition-all ${
               canGoPrev 
                 ? 'border-gray-200 text-gray-900 hover:border-[#6B2C58] hover:text-[#6B2C58]' 
                 : 'border-gray-100 text-gray-300 cursor-not-allowed'
             }`}
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={next}
             disabled={!canGoNext}
-            className={`p-3 rounded-full border-2 transition-all ${
+            className={`p-2.5 rounded-full border-2 transition-all ${
               canGoNext 
                 ? 'border-gray-200 text-gray-900 hover:border-[#6B2C58] hover:text-[#6B2C58]' 
                 : 'border-gray-100 text-gray-300 cursor-not-allowed'
             }`}
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </div>
       </div>
