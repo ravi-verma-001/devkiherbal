@@ -9,7 +9,7 @@ import ProductCard from '@/components/ui/ProductCard';
 import { Product } from '@/types/product';
 import { fallbackProducts } from '@/lib/fallbackProducts';
 
-const CATEGORIES = ['all', 'immunity', 'sleep', 'energy', 'mood', 'digestive'];
+const CATEGORIES = ['all', 'immunity', 'sleep', 'energy', 'mood', 'digestive', 'combo'];
 const BENEFITS = ['immune', 'sleep', 'energy', 'mood', 'digestive', 'vitamins'];
 
 function ShopContent() {
