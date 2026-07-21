@@ -3,6 +3,9 @@ import { razorpay } from '@/lib/razorpay';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!razorpay) {
+      return NextResponse.json({ error: 'Razorpay is not configured' }, { status: 500 });
+    }
     const { amount, currency = 'INR' } = await request.json();
 
     if (!amount) {
