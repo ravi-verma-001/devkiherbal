@@ -141,7 +141,7 @@ function CheckoutPageContent() {
 
       const orderData = await resOrder.json();
       if (!resOrder.ok) {
-        throw new Error(orderData.error || 'Failed to create Cashfree order');
+        throw new Error(orderData.details || orderData.error || 'Failed to create Cashfree order');
       }
 
       // 4. Save order details locally so they can be written to DB upon successful callback
