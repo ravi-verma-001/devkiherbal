@@ -115,17 +115,21 @@ export default function ProductPage() {
         '/banner/nightrelief5.jpeg',
         '/banner/nightrelief6.jpeg',
       ]
-    : slug === 'skin-hair-combo'
+    : slug === 'skin-hair-combo' || slug === 'pro-hair-skin-combo'
     ? [
         '/banner/combo1.png'
       ]
-    : slug === 'beauty-sleep-combo'
+    : slug === 'beauty-sleep-combo' || slug === 'the-confidence-combo'
     ? [
         '/banner/combo2.png'
       ]
-    : slug === 'stress-free-sleep-combo'
+    : slug === 'stress-free-sleep-combo' || slug === 'just-lose-it-combo'
     ? [
         '/banner/combo3.png'
+      ]
+    : slug === 'great-looks-energy-bundle'
+    ? [
+        '/banner/Gemini_Generated_Image_kn9yelkn9yelkn9y.png'
       ]
     : (() => {
         const dummyImages = [

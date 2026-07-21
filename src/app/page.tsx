@@ -2,8 +2,9 @@ import Hero from '@/components/Hero';
 import CategoryGoals from '@/components/home/CategoryGoals';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import DoctorTestimonials from '@/components/home/DoctorTestimonials';
-import ProductBenefits from '@/components/home/ProductBenefits';
 import ProductCategories from '@/components/home/ProductCategories';
+import BestSellerCombos from '@/components/home/BestSellerCombos';
+import Image from 'next/image';
 
 import FlexFitHighlight from '@/components/home/FlexFitHighlight';
 import ComboSection from '@/components/home/ComboSection';
@@ -29,10 +30,26 @@ export default async function Home() {
       <Hero />
       <CategoryGoals />
       <FeaturedProducts initialProducts={featuredProducts} />
-      <FlexFitHighlight />
-      <section id="benefits">
-        <ProductBenefits />
+      
+      {/* Responsive Make Healthy Banner Section */}
+      <section className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative w-full rounded-[24px] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <Image
+              src="/banner/Make_Healthy.webp"
+              alt="Make Healthy Habits Easy"
+              width={1200}
+              height={400}
+              className="w-full h-auto object-contain"
+              unoptimized={true}
+              priority
+            />
+          </div>
+        </div>
       </section>
+
+      <BestSellerCombos />
+      <FlexFitHighlight />
       <ProductCategories />
       <ComboSection />
       <DoctorTestimonials />

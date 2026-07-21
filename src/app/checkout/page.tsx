@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -11,14 +11,16 @@ import { formatCurrency } from '@/utils/format';
 
 const placeholderImage = 'https://images.unsplash.com/photo-1550572017-edd951aa81a2?w=100&h=100&fit=crop';
 
-export default function CheckoutPage() {
+function CheckoutPageContent() {
   const router = useRouter();
-  const { items, total, clearCart } = useCart();
+  const { items, total, clearCart, discount } = useCart();
+  const finalTotal = Math.max(0, total - discount);
   const [loading, setLoading] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [form, setForm] = useState({
     name: '',
     email: '',
+    phone: '',
     address: '',
     city: '',
     state: '',
@@ -30,10 +32,60 @@ export default function CheckoutPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const loadRazorpayScript = () => {
+  const searchParams = useSearchParams();
+  const orderIdParam = searchParams.get('order_id');
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [verificationError, setVerificationError] = useState('');
+
+  useEffect(() => {
+    if (orderIdParam) {
+      const verifyPayment = async () => {
+        setIsVerifying(true);
+        setVerificationError('');
+        try {
+          const pendingOrderDataStr = localStorage.getItem('pending-order-data');
+          if (!pendingOrderDataStr) {
+            throw new Error('Pending order details not found. Please contact support.');
+          }
+          const orderData = JSON.parse(pendingOrderDataStr);
+
+          const resVerify = await fetch('/api/cashfree/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              orderId: orderIdParam,
+              orderData,
+            }),
+          });
+
+          const verifyData = await resVerify.json();
+          if (resVerify.ok && verifyData.success) {
+            clearCart();
+            localStorage.removeItem('pending-order-data');
+            setConfirmed(true);
+          } else {
+            throw new Error(verifyData.message || 'Payment verification failed.');
+          }
+        } catch (err: any) {
+          console.error(err);
+          setVerificationError(err.message || 'Something went wrong during payment verification.');
+        } finally {
+          setIsVerifying(false);
+        }
+      };
+
+      verifyPayment();
+    }
+  }, [orderIdParam, clearCart]);
+
+  const loadCashfreeScript = () => {
     return new Promise((resolve) => {
+      if ((window as any).Cashfree) {
+        resolve(true);
+        return;
+      }
       const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';
       script.onload = () => resolve(true);
       script.onerror = () => resolve(false);
       document.body.appendChild(script);
@@ -47,93 +99,62 @@ export default function CheckoutPage() {
     setLoading(true);
 
     try {
-      // 1. Load Razorpay script
-      const resScript = await loadRazorpayScript();
+      // 1. Load Cashfree Script
+      const resScript = await loadCashfreeScript();
       if (!resScript) {
-        alert('Razorpay SDK failed to load. Are you online?');
+        alert('Cashfree SDK failed to load. Are you online?');
         setLoading(false);
         return;
       }
 
-      // 2. Create Razorpay Order
-      const resOrder = await fetch('/api/razorpay/order', {
+      // 2. Prepare Order Data
+      const orderDetails = {
+        userId: 'guest',
+        items: items.map((i) => ({
+          productId: i._id,
+          name: i.name,
+          price: i.price,
+          quantity: i.quantity,
+        })),
+        total: finalTotal,
+        shippingAddress: {
+          name: form.name,
+          address: form.address,
+          city: form.city,
+          state: form.state,
+          zipCode: form.zipCode,
+          country: form.country,
+        },
+      };
+
+      // 3. Create Cashfree Order
+      const resOrder = await fetch('/api/cashfree/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: total }),
+        body: JSON.stringify({
+          amount: finalTotal,
+          customerName: form.name,
+          customerEmail: form.email,
+          customerPhone: form.phone,
+        }),
       });
 
       const orderData = await resOrder.json();
       if (!resOrder.ok) {
-        throw new Error(orderData.error || 'Failed to create Razorpay order');
+        throw new Error(orderData.error || 'Failed to create Cashfree order');
       }
 
-      // 3. Open Razorpay Checkout
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_test_your_key_id', // Fallback for local dev
-        amount: orderData.amount,
-        currency: orderData.currency,
-        name: 'Wellness Store',
-        description: 'Quality Supplements Payment',
-        order_id: orderData.id,
-        handler: async (response: any) => {
-          try {
-            // 4. Verify Payment and Create Order
-            const resVerify = await fetch('/api/razorpay/verify', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                orderData: {
-                  userId: 'guest',
-                  items: items.map((i) => ({
-                    productId: i._id,
-                    name: i.name,
-                    price: i.price,
-                    quantity: i.quantity,
-                  })),
-                  total,
-                  shippingAddress: {
-                    name: form.name,
-                    address: form.address,
-                    city: form.city,
-                    state: form.state,
-                    zipCode: form.zipCode,
-                    country: form.country,
-                  },
-                }
-              }),
-            });
+      // 4. Save order details locally so they can be written to DB upon successful callback
+      localStorage.setItem('pending-order-data', JSON.stringify(orderDetails));
 
-            const verifyData = await resVerify.json();
-            if (resVerify.ok) {
-              clearCart();
-              setConfirmed(true);
-            } else {
-              throw new Error(verifyData.message || 'Verification failed');
-            }
-          } catch (err: any) {
-            alert(err.message);
-          } finally {
-            setLoading(false);
-          }
-        },
-        prefill: {
-          name: form.name,
-          email: form.email,
-        },
-        theme: {
-          color: '#10b981', // emerald-600
-        },
-      };
+      // 5. Initialize Cashfree and Redirect to Checkout
+      const cashfree = (window as any).Cashfree({
+        mode: process.env.NEXT_PUBLIC_CASHFREE_ENV || 'sandbox',
+      });
 
-      const paymentObject = new (window as any).Razorpay(options);
-      paymentObject.open();
-
-      paymentObject.on('payment.failed', (response: any) => {
-        alert('Payment failed: ' + response.error.description);
-        setLoading(false);
+      cashfree.checkout({
+        paymentSessionId: orderData.payment_session_id,
+        redirectTarget: '_self',
       });
 
     } catch (error: any) {
@@ -142,6 +163,41 @@ export default function CheckoutPage() {
       setLoading(false);
     }
   };
+
+  if (isVerifying) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
+        <Loader2 className="h-16 w-16 animate-spin text-emerald-600 mb-6" />
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Verifying Payment...</h2>
+        <p className="text-gray-600 max-w-md">
+          Please wait while we verify your transaction. Do not refresh or close this window.
+        </p>
+      </div>
+    );
+  }
+
+  if (verificationError) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center">
+        <div className="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mb-6">
+          <span className="text-4xl text-red-600">✕</span>
+        </div>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Payment Verification Failed</h1>
+        <p className="text-gray-600 mb-8 max-w-md">
+          {verificationError}
+        </p>
+        <button
+          onClick={() => {
+            setVerificationError('');
+            router.replace('/checkout');
+          }}
+          className="bg-emerald-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-emerald-700 transition-colors"
+        >
+          Try Checkout Again
+        </button>
+      </div>
+    );
+  }
 
   if (items.length === 0 && !confirmed) {
     return (
@@ -215,6 +271,19 @@ export default function CheckoutPage() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  pattern="[0-9]{10}"
+                  placeholder="10-digit mobile number"
+                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
                 <input
                   type="text"
@@ -282,20 +351,19 @@ export default function CheckoutPage() {
             <div className="bg-white rounded-2xl p-6 shadow-sm">
               <div className="flex items-center gap-4 p-4 rounded-xl border-2 border-emerald-200 bg-emerald-50/50">
                 <div className="h-10 w-10 relative flex-shrink-0">
-                  <Image
-                    src="https://razorpay.com/favicon.png"
-                    alt="Razorpay"
-                    fill
-                    className="object-contain"
+                  <img
+                    src="https://www.cashfree.com/favicon.ico"
+                    alt="Cashfree"
+                    className="object-contain w-full h-full"
                   />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">Secure Payment</p>
-                  <p className="text-sm text-gray-500">Fast & Secure payment via Razorpay</p>
+                  <p className="text-sm text-gray-500">Fast & Secure payment via Cashfree</p>
                 </div>
               </div>
               <p className="mt-4 text-sm text-gray-500">
-                Pay via UPI, Cards, Netbanking, or Wallets using Razorpay's secure checkout.
+                Pay via UPI, Cards, Netbanking, or Wallets using Cashfree's secure checkout.
               </p>
             </div>
           </motion.div>
@@ -330,10 +398,20 @@ export default function CheckoutPage() {
                   </div>
                 ))}
               </div>
-              <div className="border-t border-slate-100 mt-6 pt-6">
-                <div className="flex justify-between font-bold text-xl text-gray-900">
-                  <span>Total</span>
+              <div className="border-t border-slate-100 mt-6 pt-6 space-y-2">
+                <div className="flex justify-between text-gray-600">
+                  <span>Subtotal</span>
                   <span>{formatCurrency(total)}</span>
+                </div>
+                {discount > 0 && (
+                  <div className="flex justify-between text-emerald-600">
+                    <span>Discount</span>
+                    <span>-{formatCurrency(discount)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between font-bold text-xl text-gray-900 pt-2 border-t border-slate-100">
+                  <span>Total</span>
+                  <span>{formatCurrency(finalTotal)}</span>
                 </div>
               </div>
               <button
@@ -348,5 +426,18 @@ export default function CheckoutPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[60vh] flex flex-col items-center justify-center px-4">
+        <Loader2 className="h-12 w-12 animate-spin text-emerald-600 mb-4" />
+        <p className="text-gray-500">Loading checkout...</p>
+      </div>
+    }>
+      <CheckoutPageContent />
+    </Suspense>
   );
 }

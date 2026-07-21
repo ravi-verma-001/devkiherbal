@@ -11,9 +11,8 @@ import { formatCurrency } from '@/utils/format';
 const placeholderImage = 'https://images.unsplash.com/photo-1550572017-edd951aa81a2?w=200&h=200&fit=crop';
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, total } = useCart();
+  const { items, updateQuantity, removeItem, total, discount, setDiscount } = useCart();
   const [coupon, setCoupon] = useState('');
-  const [discount, setDiscount] = useState(0);
   const [couponError, setCouponError] = useState('');
   const [couponLoading, setCouponLoading] = useState(false);
 
@@ -170,6 +169,24 @@ export default function CartPage() {
                 </div>
                 {couponError && <p className="text-red-500 text-sm mt-2">{couponError}</p>}
                 {discount > 0 && <p className="text-emerald-600 text-sm mt-2">Coupon applied! -{formatCurrency(discount)}</p>}
+                
+                <div className="mt-4 pt-4 border-t border-slate-100">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={discount === 100}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setDiscount(100);
+                        } else {
+                          setDiscount(0);
+                        }
+                      }}
+                      className="w-4 h-4 accent-emerald-600 cursor-pointer rounded"
+                    />
+                    <span className="text-sm font-bold text-gray-700">FLAT RS. 100 OFF ON ALL PRODUCTS!</span>
+                  </label>
+                </div>
               </div>
 
               <div className="space-y-3 border-t border-slate-100 pt-4">

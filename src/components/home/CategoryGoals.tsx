@@ -5,19 +5,19 @@ import { motion } from 'framer-motion';
 const goals = [
   {
     title: 'Get Clear\nSkin',
-    image: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=400&h=400&fit=crop&crop=faces',
+    image: '/banner/p1.webp',
   },
   {
     title: 'Get Healthy\nHair',
-    image: 'https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=400&h=400&fit=crop&crop=faces',
+    image: '/banner/p2.webp',
   },
   {
     title: 'Get Acne-\nFree Skin',
-    image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=400&fit=crop&crop=faces',
+    image: '/banner/p3.webp',
   },
   {
     title: 'Get Healthy\nGut',
-    image: '/banner/GutFix.png',
+    image: '/banner/p4.webp',
   }
 ];
 

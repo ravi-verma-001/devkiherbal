@@ -156,8 +156,8 @@ export const fallbackProducts = [
   },
   {
     _id: '7',
-    name: 'Mass Builder Capsule',
-    slug: 'mass-builder-capsule',
+    name: 'Mass Builder',
+    slug: 'mass-builder',
     description: 'Build lean muscle mass and improve strength with our Mass Builder capsules.',
     price: 749,
     originalPrice: 1199,
@@ -166,7 +166,7 @@ export const fallbackProducts = [
       '2m': 1349,
       '3m': 1850
     },
-    images: ['/banner/combo-beauty-sleep.jpeg'],
+    images: ['/banner/MassBuilder.png'],
     category: 'Muscle Gain',
     benefits: ['Muscle Growth', 'Increased Strength', 'Better Recovery'],
     ingredients: ['Whey Protein', 'Creatine', 'BCAA'],
@@ -174,7 +174,7 @@ export const fallbackProducts = [
     reviewCount: 320,
     inStock: true,
     stockQuantity: 200,
-    featured: false,
+    featured: true,
   },
   {
     _id: '8',

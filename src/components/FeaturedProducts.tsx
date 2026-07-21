@@ -38,7 +38,7 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
       .catch(() => setLoading(false));
   }, [initialProducts]);
 
-  const desiredOrder = ['u-fit', 'fit-flex', 'shilajit-gold', 'period-pain-relief'];
+  const desiredOrder = ['u-fit', 'fit-flex', 'shilajit-gold', 'mass-builder'];
   
   const orderedProducts: Product[] = [];
   desiredOrder.forEach(slug => {
@@ -63,13 +63,13 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
   }
 
   return (
-    <section id="featured" className="py-20 bg-[#F9F9F9]">
+    <section id="featured" className="pt-14 pb-20 bg-[#F9F9F9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10 flex flex-col items-center"
+          className="text-center mb-6 flex flex-col items-center"
         >
           <h2 className="text-[28px] md:text-[40px] font-black text-black mb-2 tracking-tight leading-tight">
             Our Bestsellers

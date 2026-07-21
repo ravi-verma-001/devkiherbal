@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Microscope, Calendar, Leaf } from 'lucide-react';
+import Image from 'next/image';
 
 const FSSAILogo = () => (
   <svg viewBox="0 0 100 40" className="h-10 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,13 +69,14 @@ export default function ProductBenefits() {
         >
           <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
             {/* Left Content */}
-            <div className="max-w-md">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                Make Healthy Habits Easy!
-              </h2>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light">
-                We keep ourselves at the junction of health and fun focussed on delivering results!
-              </p>
+            <div className="w-full relative aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-white/10 bg-white/5">
+              <Image
+                src="/banner/Make_Healthy.webp"
+                alt="Make Healthy Habits"
+                fill
+                className="object-cover"
+                unoptimized={true}
+              />
             </div>
 
             {/* Right Icons Grid */}

@@ -38,13 +38,13 @@ export default function PhotoReviews() {
   }, [chunks.length]);
 
   return (
-    <section className="py-20 bg-white relative">
+    <section className="pt-12 pb-20 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Real Results

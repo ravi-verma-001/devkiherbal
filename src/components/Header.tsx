@@ -9,78 +9,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const ALL_PRODUCTS = [
   {
-    name: 'Beauty Gummies',
-    image: '/banner/GlowBerry.png',
-    href: '/product/beauty-gummies',
-  },
-  {
-    name: 'Anti-Acne Collagen',
-    badge: 'Price Drop',
-    badgeColor: 'bg-[#2d3260]',
-    imageBg: 'bg-[#fef3c7]',
-    image: '/banner/product5.jpeg',
-    href: '/product/anti-acne-collagen',
-  },
-  {
-    name: 'Beauty Collagen',
-    badge: 'Price Drop',
-    badgeColor: 'bg-[#cf6040]',
-    imageBg: 'bg-[#ffedd5]',
-    image: '/banner/U-F.png',
-    href: '/product/beauty-collagen',
-  },
-  {
-    name: 'Gluta-Glow Gummies',
-    image: '/banner/DailyBurner.png',
-    href: '/product/gluta-glow-gummies',
-  },
-  {
-    name: 'GutFix Health Gummies',
-    image: '/banner/GutFix.png',
-    href: '/product/gutfix-health-gummies',
-  },
-  {
-    name: 'Sleep Gummies',
-    image: '/banner/NightReliefNew.png',
-    href: '/product/sleep-gummies',
-  },
-  {
-    name: 'Daily Electrolytes',
+    name: 'U-FIT BURNER',
     badge: 'NEW LAUNCH',
     badgeColor: 'bg-[#f5a623]',
     image: '/banner/U-F.png',
-    href: '/product/daily-electrolytes',
+    href: '/product/u-fit',
   },
   {
-    name: 'Night Burner',
+    name: 'MASS BUILDER',
     badge: 'BESTSELLER',
     badgeColor: 'bg-[#1e40af]',
-    image: '/banner/NightBurner.png',
-    href: '/product/night-burner',
+    image: '/banner/MassBuilder.png',
+    href: '/product/mass-builder',
   },
   {
-    name: 'Daily Burner',
+    name: 'PURIFY DETOX',
     badge: 'BESTSELLER',
     badgeColor: 'bg-[#dc2626]',
     image: '/banner/DailyBurner.png',
-    href: '/product/daily-burner',
+    href: '/product/purify-detox',
   },
   {
-    name: 'Lung & Liver Detox',
+    name: 'FIT FLEX BURNER',
     badge: 'TRENDING',
     badgeColor: 'bg-[#0f766e]',
     image: '/banner/F-F.png',
-    href: '/product/lung-liver-detox',
+    href: '/product/fit-flex',
   },
   {
     name: 'Shilajit Gummies',
     image: '/banner/ShilajitNew.png',
     href: '/product/shilajit-gummies',
-  },
-  {
-    name: 'MagBliss Magnesium',
-    image: '/banner/PeriodPainNew.png',
-    href: '/product/magbliss-magnesium',
   }
 ];
 

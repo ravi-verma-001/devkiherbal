@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trash2 } from 'lucide-react';
@@ -7,12 +8,33 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function CartDrawer() {
-  const { isCartOpen, setIsCartOpen, items, removeItem, total, itemCount } = useCart();
+  const { isCartOpen, setIsCartOpen, items, removeItem, total, itemCount, discount, setDiscount } = useCart();
+  const [couponCode, setCouponCode] = useState('');
+  const [couponError, setCouponError] = useState('');
+  const [couponLoading, setCouponLoading] = useState(false);
 
-  const amountForFreeGift = 1999;
-  const currentTotal = total;
-  const amountNeeded = Math.max(0, amountForFreeGift - currentTotal);
-  const progressPercent = Math.min(100, (currentTotal / amountForFreeGift) * 100);
+  const applyCoupon = async () => {
+    if (!couponCode.trim()) return;
+    setCouponError('');
+    setCouponLoading(true);
+    try {
+      const res = await fetch('/api/coupons/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode.trim(), total }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        setDiscount(data.discount);
+      } else {
+        setCouponError(data.message || 'Invalid coupon');
+      }
+    } catch {
+      setCouponError('Failed to validate coupon');
+    } finally {
+      setCouponLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -43,31 +65,6 @@ export default function CartDrawer() {
                 className="p-2 hover:bg-slate-100 rounded-full transition-colors bg-gray-50"
               >
                 <X className="h-5 w-5 text-gray-500" />
-              </button>
-            </div>
-
-            {/* Free Gift Section */}
-            <div className="p-4 border-b bg-white space-y-3">
-              <p className="text-center text-sm font-bold text-gray-800">
-                ✨ Unlock Your FREE Gift at ₹1999 🎁
-              </p>
-              
-              <div className="relative h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progressPercent}%` }}
-                  className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
-                />
-              </div>
-
-              <p className="text-center text-sm font-bold text-gray-700">
-                {amountNeeded > 0 
-                  ? `Shop for Rs. ${amountNeeded} more to get a FREE gift!` 
-                  : 'Congratulations! You unlocked a FREE gift!'}
-              </p>
-
-              <button className="w-full py-3 bg-[#E94040] text-white font-bold rounded-md hover:bg-red-600 transition-colors">
-                Choose Your Free Gift 🎁
               </button>
             </div>
 
@@ -119,25 +116,56 @@ export default function CartDrawer() {
                 <div className="flex gap-2">
                   <input
                     type="text"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
                     placeholder="Discount code"
                     className="flex-1 border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-black"
                   />
-                  <button className="px-6 py-2 bg-black text-white font-bold rounded-md text-sm">
-                    Apply
+                  <button
+                    onClick={applyCoupon}
+                    disabled={couponLoading}
+                    className="px-6 py-2 bg-black text-white font-bold rounded-md text-sm disabled:opacity-50"
+                  >
+                    {couponLoading ? '...' : 'Apply'}
                   </button>
                 </div>
+                {couponError && <p className="text-red-500 text-xs">{couponError}</p>}
+                {discount > 0 && <p className="text-emerald-600 text-xs font-bold">Discount applied! -Rs. {discount}</p>}
 
                 <div className="space-y-2">
                   <h4 className="font-bold text-gray-900">Discount</h4>
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="discount" className="w-4 h-4 accent-black" />
+                    <input
+                      type="checkbox"
+                      checked={discount === 100}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setDiscount(100);
+                        } else {
+                          setDiscount(0);
+                        }
+                      }}
+                      className="w-4 h-4 accent-black cursor-pointer"
+                    />
                     <span className="text-sm font-bold text-gray-700">FLAT RS. 100 OFF ON ALL PRODUCTS!</span>
                   </label>
                 </div>
 
-                <div className="flex justify-between items-center py-2 border-t mt-4">
-                  <span className="font-black text-xl">Subtotal</span>
-                  <span className="font-black text-xl">Rs. {total.toLocaleString()}</span>
+                <div className="space-y-1.5 border-t pt-4">
+                  <div className="flex justify-between items-center text-gray-600">
+                    <span className="font-medium">Subtotal</span>
+                    <span className="font-medium">Rs. {total.toLocaleString()}</span>
+                  </div>
+                  {discount > 0 && (
+                    <div className="flex justify-between items-center text-emerald-600">
+                      <span className="font-medium">Discount</span>
+                      <span className="font-medium">-Rs. {discount.toLocaleString()}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center pt-2 border-t">
+                    <span className="font-black text-xl">Total</span>
+                    <span className="font-black text-xl">Rs. {Math.max(0, total - discount).toLocaleString()}</span>
+                  </div>
                 </div>
 
                 <Link href="/cart" onClick={() => setIsCartOpen(false)}>
