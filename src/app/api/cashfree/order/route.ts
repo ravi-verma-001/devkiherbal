@@ -15,6 +15,11 @@ export async function POST(request: NextRequest) {
 
     const orderId = `order_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 
+    let origin = request.nextUrl.origin;
+    if (origin.startsWith('http://') && appType === 'production') {
+      origin = origin.replace('http://', 'https://');
+    }
+
     const response = await fetch(`${cashfreeHost}/orders`, {
       method: 'POST',
       headers: {
@@ -34,7 +39,7 @@ export async function POST(request: NextRequest) {
           customer_phone: customerPhone || '9999999999',
         },
         order_meta: {
-          return_url: `${request.nextUrl.origin}/checkout?order_id={order_id}`,
+          return_url: `${origin}/checkout?order_id={order_id}`,
         },
       }),
     });
