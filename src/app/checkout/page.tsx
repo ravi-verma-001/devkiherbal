@@ -149,7 +149,7 @@ function CheckoutPageContent() {
 
       // 5. Initialize Cashfree and Redirect to Checkout
       const cashfree = (window as any).Cashfree({
-        mode: process.env.NEXT_PUBLIC_CASHFREE_ENV || 'sandbox',
+        mode: orderData.environment || 'sandbox',
       });
 
       cashfree.checkout({

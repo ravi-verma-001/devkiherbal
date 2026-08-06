@@ -54,6 +54,7 @@ export async function POST(request: NextRequest) {
       order_id: data.order_id,
       payment_session_id: data.payment_session_id,
       order_status: data.order_status,
+      environment: appType,
     });
   } catch (error: any) {
     console.error('Cashfree Order Error:', error);
