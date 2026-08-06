@@ -15,6 +15,14 @@ export async function POST(request: NextRequest) {
 
     const orderId = `order_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 
+    console.log('[Cashfree Debug]', {
+      env: process.env.CASHFREE_ENV,
+      appType,
+      host: cashfreeHost,
+      appId: process.env.CASHFREE_APP_ID ? `${process.env.CASHFREE_APP_ID.substring(0, 6)}... (len: ${process.env.CASHFREE_APP_ID.length})` : 'MISSING',
+      secretKey: process.env.CASHFREE_SECRET_KEY ? `${process.env.CASHFREE_SECRET_KEY.substring(0, 12)}... (len: ${process.env.CASHFREE_SECRET_KEY.length})` : 'MISSING',
+    });
+
     let origin = request.nextUrl.origin;
     if (origin.startsWith('http://') && appType === 'production') {
       origin = origin.replace('http://', 'https://');
