@@ -44,6 +44,8 @@ const faqs = [
   { q: 'What is the shelf life?', a: 'Unopened, our gummies have a 24-month shelf life. Once opened, use within 6 months.' },
 ];
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function ProductPage() {
   const params = useParams();
   const slug = params?.slug as string;
@@ -62,8 +64,8 @@ export default function ProductPage() {
     setLoading(true);
     setSelectedImage(0); // Reset image index on product change
     Promise.all([
-      fetch(`/api/products?slug=${slug}`).then((r) => r.json()),
-      fetch('/api/products').then((r) => r.json()),
+      fetch(`${API_BASE}/api/products?slug=${slug}`).then((r) => r.json()),
+      fetch(`${API_BASE}/api/products`).then((r) => r.json()),
     ])
       .then(([prod, all]) => {
         setProduct(prod?.slug ? prod : { ...defaultProduct, slug, name: slug.replace(/-/g, ' ') });
@@ -76,7 +78,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     if (product?._id) {
-      fetch(`/api/reviews?productId=${product._id}`)
+      fetch(`${API_BASE}/api/reviews?productId=${product._id}`)
         .then((r) => r.json())
         .then((data) => setReviews(Array.isArray(data) ? data : []));
     }

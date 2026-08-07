@@ -12,6 +12,8 @@ import { fallbackProducts } from '@/lib/fallbackProducts';
 const CATEGORIES = ['all', 'immunity', 'sleep', 'energy', 'mood', 'digestive', 'combo'];
 const BENEFITS = ['immune', 'sleep', 'energy', 'mood', 'digestive', 'vitamins'];
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 function ShopContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category') || '';
@@ -37,7 +39,7 @@ function ShopContent() {
     if (minPrice) params.set('minPrice', minPrice);
     if (maxPrice) params.set('maxPrice', maxPrice);
 
-    fetch(`/api/products?${params}`)
+    fetch(`${API_BASE}/api/products?${params}`)
       .then((res) => {
         if (!res.ok) throw new Error('API Error');
         return res.json();

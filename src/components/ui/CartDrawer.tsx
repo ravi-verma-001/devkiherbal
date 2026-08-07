@@ -7,6 +7,8 @@ import { X, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function CartDrawer() {
   const { isCartOpen, setIsCartOpen, items, removeItem, total, itemCount, discount, setDiscount } = useCart();
   const [couponCode, setCouponCode] = useState('');
@@ -18,7 +20,7 @@ export default function CartDrawer() {
     setCouponError('');
     setCouponLoading(true);
     try {
-      const res = await fetch('/api/coupons/validate', {
+      const res = await fetch(`${API_BASE}/api/coupons/validate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: couponCode.trim(), total }),

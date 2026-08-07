@@ -8,6 +8,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Amount is required' }, { status: 400 });
     }
 
+    const appId = process.env.CASHFREE_APP_ID;
+    const secretKey = process.env.CASHFREE_SECRET_KEY;
+
+    if (!appId || !secretKey) {
+      return NextResponse.json(
+        { error: 'Configuration Error', details: 'Cashfree API credentials (CASHFREE_APP_ID or CASHFREE_SECRET_KEY) are missing in server environment variables.' },
+        { status: 500 }
+      );
+    }
+
     const appType = process.env.CASHFREE_ENV === 'production' ? 'production' : 'sandbox';
     const cashfreeHost = appType === 'production' 
       ? 'https://api.cashfree.com/pg' 
@@ -19,8 +29,8 @@ export async function POST(request: NextRequest) {
       env: process.env.CASHFREE_ENV,
       appType,
       host: cashfreeHost,
-      appId: process.env.CASHFREE_APP_ID ? `${process.env.CASHFREE_APP_ID.substring(0, 6)}... (len: ${process.env.CASHFREE_APP_ID.length})` : 'MISSING',
-      secretKey: process.env.CASHFREE_SECRET_KEY ? `${process.env.CASHFREE_SECRET_KEY.substring(0, 12)}... (len: ${process.env.CASHFREE_SECRET_KEY.length})` : 'MISSING',
+      appId: `${appId.substring(0, 6)}... (len: ${appId.length})`,
+      secretKey: `${secretKey.substring(0, 12)}... (len: ${secretKey.length})`,
     });
 
     let origin = request.nextUrl.origin;
@@ -31,8 +41,8 @@ export async function POST(request: NextRequest) {
     const response = await fetch(`${cashfreeHost}/orders`, {
       method: 'POST',
       headers: {
-        'x-client-id': process.env.CASHFREE_APP_ID || '',
-        'x-client-secret': process.env.CASHFREE_SECRET_KEY || '',
+        'x-client-id': appId,
+        'x-client-secret': secretKey,
         'x-api-version': '2023-08-01',
         'Content-Type': 'application/json',
       },

@@ -67,6 +67,8 @@ const COMBO_PRODUCTS = [
   },
 ];
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'combo'>('all');
@@ -74,7 +76,7 @@ export default function Header() {
   const { itemCount, setIsCartOpen } = useCart();
 
   useEffect(() => {
-    fetch('/api/auth/me')
+    fetch(`${API_BASE}/api/auth/me`)
       .then(res => res.json())
       .then(data => {
         if (data.user) setUser(data.user);
@@ -153,7 +155,7 @@ export default function Header() {
                 </Link>
                 <button 
                   onClick={async () => {
-                    await fetch('/api/auth/logout', { method: 'POST' });
+                    await fetch(`${API_BASE}/api/auth/logout`, { method: 'POST' });
                     window.location.reload();
                   }}
                   className="p-2 text-red-500 hover:bg-red-50 transition-colors rounded-full" 
@@ -285,7 +287,7 @@ export default function Header() {
                         <Link href={user.role === 'admin' ? '/admin' : '/profile'} onClick={() => setIsMenuOpen(false)} className="text-[15px] font-semibold py-4 px-4 flex justify-between items-center group border-b border-slate-50 hover:bg-slate-50">
                           {user.role === 'admin' ? 'Admin Portal' : 'My Profile'} <span className="text-slate-300 group-hover:text-black transition-colors text-xl font-light">→</span>
                         </Link>
-                        <button onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.reload(); }} className="w-full text-left text-[15px] font-semibold text-red-500 py-4 px-4 flex justify-between items-center group hover:bg-slate-50">
+                        <button onClick={async () => { await fetch(`${API_BASE}/api/auth/logout`, { method: 'POST' }); window.location.reload(); }} className="w-full text-left text-[15px] font-semibold text-red-500 py-4 px-4 flex justify-between items-center group hover:bg-slate-50">
                           Logout <span className="text-slate-300 group-hover:text-red-500 transition-colors text-xl font-light">→</span>
                         </button>
                       </>

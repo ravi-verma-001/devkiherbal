@@ -11,6 +11,8 @@ import { formatCurrency } from '@/utils/format';
 
 const placeholderImage = 'https://images.unsplash.com/photo-1550572017-edd951aa81a2?w=100&h=100&fit=crop';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 function CheckoutPageContent() {
   const router = useRouter();
   const { items, total, clearCart, discount } = useCart();
@@ -49,7 +51,7 @@ function CheckoutPageContent() {
           }
           const orderData = JSON.parse(pendingOrderDataStr);
 
-          const resVerify = await fetch('/api/cashfree/verify', {
+          const resVerify = await fetch(`${API_BASE}/api/cashfree/verify`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -128,7 +130,7 @@ function CheckoutPageContent() {
       };
 
       // 3. Create Cashfree Order
-      const resOrder = await fetch('/api/cashfree/order', {
+      const resOrder = await fetch(`${API_BASE}/api/cashfree/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

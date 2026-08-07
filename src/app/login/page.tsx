@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
@@ -25,7 +27,7 @@ export default function LoginPage() {
     const payload = isLogin ? { email, password } : { name, email, password };
 
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch(`${API_BASE}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

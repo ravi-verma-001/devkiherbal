@@ -10,6 +10,8 @@ import { formatCurrency } from '@/utils/format';
 
 const placeholderImage = 'https://images.unsplash.com/photo-1550572017-edd951aa81a2?w=200&h=200&fit=crop';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function CartPage() {
   const { items, updateQuantity, removeItem, total, discount, setDiscount } = useCart();
   const [coupon, setCoupon] = useState('');
@@ -25,7 +27,7 @@ export default function CartPage() {
     setCouponError('');
     setCouponLoading(true);
     try {
-      const res = await fetch('/api/coupons/validate', {
+      const res = await fetch(`${API_BASE}/api/coupons/validate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: coupon.trim(), total: subtotal }),

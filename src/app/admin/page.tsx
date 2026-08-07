@@ -45,6 +45,8 @@ interface Order {
   createdAt: string;
 }
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function AdminPage() {
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
@@ -64,15 +66,15 @@ export default function AdminPage() {
   });
 
   useEffect(() => {
-    fetch('/api/auth/me')
+    fetch(`${API_BASE}/api/auth/me`)
       .then(r => r.json())
       .then(data => {
         if (data.user?.role !== 'admin') {
           router.push('/login');
         } else {
           Promise.all([
-            fetch('/api/products').then((r) => r.json()),
-            fetch('/api/orders').then((r) => r.json()),
+            fetch(`${API_BASE}/api/products`).then((r) => r.json()),
+            fetch(`${API_BASE}/api/orders`).then((r) => r.json()),
           ])
             .then(([prods, ords]) => {
               setProducts(Array.isArray(prods) ? prods : []);
@@ -90,7 +92,7 @@ export default function AdminPage() {
 
   const handleUpdateStatus = async (orderId: string, newStatus: string) => {
     try {
-      const res = await fetch(`/api/orders/${orderId}`, {
+      const res = await fetch(`${API_BASE}/api/orders/${orderId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -110,7 +112,7 @@ export default function AdminPage() {
   const handleAddProduct = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/products', {
+      const res = await fetch(`${API_BASE}/api/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -143,7 +145,7 @@ export default function AdminPage() {
   const handleDeleteProduct = async (id: string) => {
     if (!confirm('Delete this product?')) return;
     try {
-      const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE}/api/products/${id}`, { method: 'DELETE' });
       if (res.ok) setProducts((prev) => prev.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);

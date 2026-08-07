@@ -56,12 +56,14 @@ const initialCombos: ComboItem[] = [
   }
 ];
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function BestSellerCombos() {
   const { addItem, setIsCartOpen } = useCart();
   const [combos, setCombos] = useState<ComboItem[]>(initialCombos);
 
   useEffect(() => {
-    fetch('/api/products')
+    fetch(`${API_BASE}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

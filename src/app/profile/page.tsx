@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import { LogOut, Package, User, Clock, CheckCircle, XCircle } from 'lucide-react';
 import { formatCurrency } from '@/utils/format';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function ProfilePage() {
   const [user, setUser] = useState<any>(null);
   const [orders, setOrders] = useState<any[]>([]);
@@ -16,7 +18,7 @@ export default function ProfilePage() {
   useEffect(() => {
     async function fetchUserAndOrders() {
       try {
-        const res = await fetch('/api/auth/me');
+        const res = await fetch(`${API_BASE}/api/auth/me`);
         if (!res.ok) {
           router.push('/login');
           return;
@@ -29,7 +31,7 @@ export default function ProfilePage() {
         setUser(data.user);
 
         if (data.user?.userId) {
-          const ordersRes = await fetch(`/api/orders?userId=${data.user.userId}`);
+          const ordersRes = await fetch(`${API_BASE}/api/orders?userId=${data.user.userId}`);
           if (ordersRes.ok) {
             const ordersData = await ordersRes.json();
             setOrders(ordersData);
@@ -45,7 +47,7 @@ export default function ProfilePage() {
   }, [router]);
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await fetch(`${API_BASE}/api/auth/logout`, { method: 'POST' });
     router.push('/login');
   };
 

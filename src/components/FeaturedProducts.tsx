@@ -20,6 +20,8 @@ interface Product {
 
 import { fallbackProducts } from '@/lib/fallbackProducts';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+
 export default function FeaturedProducts({ initialProducts = [] }: { initialProducts?: Product[] }) {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [loading, setLoading] = useState(initialProducts.length === 0);
@@ -29,7 +31,7 @@ export default function FeaturedProducts({ initialProducts = [] }: { initialProd
       setLoading(false);
       return;
     }
-    fetch('/api/products?featured=true')
+    fetch(`${API_BASE}/api/products?featured=true`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(Array.isArray(data) && data.length > 0 ? data : []);
