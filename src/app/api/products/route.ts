@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Product from '@/models/Product';
+import { isAdmin } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
@@ -42,18 +43,21 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(products);
   } catch (error) {
     console.error('Products API error:', error);
-    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isAdmin(request)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+    }
     await dbConnect();
     const body = await request.json();
     const product = await Product.create(body);
     return NextResponse.json(product);
   } catch (error) {
     console.error('Products API create error:', error);
-    return NextResponse.json({ error: 'Failed to create product' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -23,6 +23,7 @@ export interface IOrder extends Document {
   razorpayPaymentId?: string;
   razorpaySignature?: string;
   cashfreeOrderId?: string;
+  expiresAt?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -50,6 +51,7 @@ const OrderSchema: Schema = new Schema({
   razorpayPaymentId: { type: String },
   razorpaySignature: { type: String },
   cashfreeOrderId: { type: String },
+  expiresAt: { type: Date, expires: 0 } // TTL index: documents expire at the date set in expiresAt
 }, {
   timestamps: true,
 });

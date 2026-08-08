@@ -28,11 +28,14 @@ export default function CartDrawer() {
       const data = await res.json();
       if (data.valid) {
         setDiscount(data.discount);
+        localStorage.setItem('applied-coupon-code', couponCode.trim().toUpperCase());
       } else {
         setCouponError(data.message || 'Invalid coupon');
+        localStorage.removeItem('applied-coupon-code');
       }
     } catch {
       setCouponError('Failed to validate coupon');
+      localStorage.removeItem('applied-coupon-code');
     } finally {
       setCouponLoading(false);
     }

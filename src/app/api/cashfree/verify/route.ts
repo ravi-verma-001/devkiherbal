@@ -1,13 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Order from '@/models/Order';
+import Product from '@/models/Product';
+
 
 export async function POST(request: NextRequest) {
   try {
-    const { orderId, orderData } = await request.json();
+    const { orderId } = await request.json();
 
     if (!orderId) {
       return NextResponse.json({ error: 'Order ID is required' }, { status: 400 });
+    }
+
+    await dbConnect();
+
+    // 1. Fetch order from DB
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+    }
+
+    // 2. Idempotency Check: if already paid, success
+    if (order.status === 'paid') {
+      return NextResponse.json({
+        success: true,
+        message: 'Payment verified successfully (already processed)',
+        orderId: order._id,
+      });
     }
 
     const appType = process.env.CASHFREE_ENV === 'production' ? 'production' : 'sandbox';
@@ -30,16 +49,26 @@ export async function POST(request: NextRequest) {
       throw new Error(data.message || 'Failed to fetch order status from Cashfree');
     }
 
+    // 3. Verify status and amount
     if (data.order_status === 'PAID') {
-      await dbConnect();
+      if (Math.abs(data.order_amount - order.total) > 0.01) {
+        return NextResponse.json(
+          { success: false, message: 'Payment amount mismatch' },
+          { status: 400 }
+        );
+      }
 
-      // Create the order in the database
-      const order = await Order.create({
-        ...orderData,
-        status: 'paid',
-        paymentMethod: 'cashfree',
-        cashfreeOrderId: orderId,
-      });
+      // 4. Decrement inventory
+      for (const item of order.items) {
+        await Product.findByIdAndUpdate(item.productId, {
+          $inc: { stockQuantity: -item.quantity },
+        });
+      }
+
+      // 5. Remove TTL expiry so order is permanent
+      order.status = 'paid';
+      order.expiresAt = undefined;
+      await order.save();
 
       // Send email notification to admin
       try {
@@ -63,7 +92,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('Cashfree Verification Error:', error);
     return NextResponse.json(
-      { error: 'Failed to verify Cashfree payment', details: error.message },
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }

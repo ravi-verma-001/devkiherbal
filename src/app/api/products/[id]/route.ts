@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Product from '@/models/Product';
+import { isAdmin } from '@/lib/auth';
 
 export async function GET(
   _request: NextRequest,
@@ -16,7 +17,7 @@ export async function GET(
     return NextResponse.json(product);
   } catch (error) {
     console.error('Product API error:', error);
-    return NextResponse.json({ error: 'Failed to fetch product' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -25,6 +26,9 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!isAdmin(request)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+    }
     await dbConnect();
     const { id } = await params;
     const body = await request.json();
@@ -35,21 +39,24 @@ export async function PUT(
     return NextResponse.json(product);
   } catch (error) {
     console.error('Product API update error:', error);
-    return NextResponse.json({ error: 'Failed to update product' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function DELETE(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!isAdmin(request)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+    }
     await dbConnect();
     const { id } = await params;
     await Product.findByIdAndDelete(id);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Product API delete error:', error);
-    return NextResponse.json({ error: 'Failed to delete product' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

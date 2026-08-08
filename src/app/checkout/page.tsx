@@ -45,25 +45,18 @@ function CheckoutPageContent() {
         setIsVerifying(true);
         setVerificationError('');
         try {
-          const pendingOrderDataStr = localStorage.getItem('pending-order-data');
-          if (!pendingOrderDataStr) {
-            throw new Error('Pending order details not found. Please contact support.');
-          }
-          const orderData = JSON.parse(pendingOrderDataStr);
-
           const resVerify = await fetch(`${API_BASE}/api/cashfree/verify`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               orderId: orderIdParam,
-              orderData,
             }),
           });
 
           const verifyData = await resVerify.json();
           if (resVerify.ok && verifyData.success) {
             clearCart();
-            localStorage.removeItem('pending-order-data');
+            localStorage.removeItem('applied-coupon-code');
             setConfirmed(true);
           } else {
             throw new Error(verifyData.message || 'Payment verification failed.');
@@ -109,32 +102,29 @@ function CheckoutPageContent() {
         return;
       }
 
-      // 2. Prepare Order Data
-      const orderDetails = {
-        userId: 'guest',
-        items: items.map((i) => ({
-          productId: i._id,
-          name: i.name,
-          price: i.price,
-          quantity: i.quantity,
-        })),
-        total: finalTotal,
-        shippingAddress: {
-          name: form.name,
-          address: form.address,
-          city: form.city,
-          state: form.state,
-          zipCode: form.zipCode,
-          country: form.country,
-        },
-      };
+      const couponCode = localStorage.getItem('applied-coupon-code') || undefined;
 
-      // 3. Create Cashfree Order
+      // 3. Create Cashfree Order (server-side recalculates and stores pending order)
       const resOrder = await fetch(`${API_BASE}/api/cashfree/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: finalTotal,
+          items: items.map((i) => ({
+            productId: i._id,
+            name: i.name,
+            price: i.price,
+            quantity: i.quantity,
+            variant: i.variant || '1m',
+          })),
+          shippingAddress: {
+            name: form.name,
+            address: form.address,
+            city: form.city,
+            state: form.state,
+            zipCode: form.zipCode,
+            country: form.country,
+          },
+          couponCode,
           customerName: form.name,
           customerEmail: form.email,
           customerPhone: form.phone,
@@ -145,9 +135,6 @@ function CheckoutPageContent() {
       if (!resOrder.ok) {
         throw new Error(orderData.details || orderData.error || 'Failed to create Cashfree order');
       }
-
-      // 4. Save order details locally so they can be written to DB upon successful callback
-      localStorage.setItem('pending-order-data', JSON.stringify(orderDetails));
 
       // 5. Initialize Cashfree and Redirect to Checkout
       const cashfree = (window as any).Cashfree({
