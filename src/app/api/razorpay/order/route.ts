@@ -37,13 +37,11 @@ export async function POST(request: NextRequest) {
 
     for (const item of items) {
       let dbProduct = null;
-      try {
-        const isValidObjectId = mongoose.isValidObjectId(item.productId);
-        dbProduct = isValidObjectId 
-          ? await Product.findById(item.productId)
-          : await Product.findOne({ $or: [{ _id: item.productId }, { slug: item.productId }] });
-      } catch (err) {
-        dbProduct = await Product.findOne({ $or: [{ _id: item.productId }, { slug: item.productId }] });
+      const isValidObjectId = mongoose.isValidObjectId(item.productId);
+      if (isValidObjectId) {
+        dbProduct = await Product.findById(item.productId);
+      } else {
+        dbProduct = await Product.findOne({ slug: item.productId });
       }
 
       if (!dbProduct) {
