@@ -58,12 +58,11 @@ const sampleProducts = [
     },
     images: [
       '/banner/purify_detox.jpeg',
-      '/banner/periods3.jpeg',
-      '/banner/periods4.jpeg',
-      '/banner/periods5.jpeg',
-      '/banner/periods6.jpeg',
-      '/banner/periods7.jpeg',
-      '/banner/periods8.jpeg'
+      '/banner/DETOX2.png',
+      '/banner/DETOX3.png',
+      '/banner/DETOX4.png',
+      '/banner/DETOX5.png',
+      '/banner/DETOX6.png'
     ],
     category: 'Women Health',
     benefits: ['Relives Cramps', 'Balances Mood', 'Reduces Inflammation'],
