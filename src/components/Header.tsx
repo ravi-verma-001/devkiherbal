@@ -210,7 +210,7 @@ export default function Header() {
               <div className="px-4 py-4 max-w-3xl mx-auto">
                 {/* Promo Banner */}
                 <Link href="/bundle" onClick={() => setIsMenuOpen(false)} className="block mb-5 rounded-xl overflow-hidden shadow-sm">
-                  <img src="/banner/slidder-banner.png" alt="Build Your Wellness Bundle" className="w-full h-auto object-cover" />
+                  <img src="/banner/hamburger_banner.png" alt="Build Your Wellness Bundle" className="w-full h-auto object-cover" />
                 </Link>
                 
                 {/* Toggle Buttons */}
