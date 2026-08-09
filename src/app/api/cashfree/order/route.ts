@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         order_id: orderId,
-        order_amount: finalTotal,
+        order_amount: Number(finalTotal.toFixed(2)),
         order_currency: currency,
         customer_details: {
           customer_id: user?.userId || `guest_${Date.now()}`,
@@ -139,7 +139,10 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       // Clean up the created order if payment gateway call failed
       await Order.findByIdAndDelete(orderId);
-      throw new Error(data.message || 'Failed to create order on Cashfree');
+      return NextResponse.json(
+        { error: data.message || 'Failed to create order on Cashfree', details: data },
+        { status: 400 }
+      );
     }
 
     // Save cashfreeOrderId to the order
@@ -155,7 +158,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('Cashfree Order Error:', error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: 'Internal Server Error', details: error.message },
       { status: 500 }
     );
   }
