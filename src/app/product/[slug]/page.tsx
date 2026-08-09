@@ -90,18 +90,16 @@ export default function ProductPage() {
   // Set images for product. If slug is period-pain-relief, use the 6 custom images from /banner/
   const images = slug === 'period-pain-relief'
     ? [
-        '/banner/PeriodPainNew.png',
-        '/banner/periods3.jpeg',
-        '/banner/periods4.jpeg',
-        '/banner/periods5.jpeg',
-        '/banner/periods6.jpeg',
-        '/banner/periods7.jpeg',
-        '/banner/periods8.jpeg',
+        '/banner/purify_detox.jpeg',
+        '/banner/DETOX2.png',
+        '/banner/DETOX3.png',
+        '/banner/DETOX4.png',
+        '/banner/DETOX5.png',
+        '/banner/DETOX6.png',
       ]
     : slug === 'shilajit-gold'
     ? [
-        '/banner/ShilajitNew.png', // Keeping the current card image at first position
-        '/banner/shilijit1.jpeg',
+        '/banner/ShilajitNew.jpeg', // Keeping the current card image at first position
         '/banner/shilijit2.jpeg',
         '/banner/shilijit3.jpeg',
         '/banner/shilijit4.jpeg',
@@ -109,7 +107,7 @@ export default function ProductPage() {
       ]
     : slug === 'night-relief-gummies'
     ? [
-        '/banner/NightReliefNew.png', // Keeping the current card image at first position
+        '/banner/C-6.png', // Keeping the current card image at first position
         '/banner/nightrelief1.jpeg',
         '/banner/nightrelief2.jpeg',
         '/banner/nightrelief3.jpeg',
