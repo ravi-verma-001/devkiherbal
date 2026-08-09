@@ -375,7 +375,12 @@ export default function ProductPage() {
 
                          <div className="p-2.5 flex flex-col items-center flex-1">
                             <div className="w-full aspect-square rounded-xl mb-3 relative overflow-hidden flex items-center justify-center bg-white border border-slate-100">
-                               <img src={images[0]} className="w-full h-full object-cover" />
+                               <img 
+                                 src={slug === 'shilajit-gold' 
+                                   ? (v === '2m' ? '/banner/Shilajittwo.jpeg' : v === '3m' ? '/banner/Shilajitthree.jpeg' : images[0]) 
+                                   : images[0]} 
+                                 className="w-full h-full object-cover" 
+                               />
                             </div>
                             
                             <div className="text-center mt-auto w-full">
