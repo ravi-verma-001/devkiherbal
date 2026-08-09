@@ -73,40 +73,26 @@ function ShopContent() {
   }, [category, benefit, minPrice, maxPrice]);
 
   const allowedSlugs = [
-    // 4 Bestsellers
+    // 4 Our Bestsellers
     'u-fit',
     'fit-flex',
     'shilajit-gold',
     'mass-builder',
-    // 4 Best Seller Combos
+    // 8 Bestseller & Explore Combos
     'pro-hair-skin-combo',
     'the-confidence-combo',
     'just-lose-it-combo',
     'great-looks-energy-bundle',
-    // 4 Explore Combos
-    'pro-skin-and-hair-combo', // slug matches for combos
-    'beauty-sleep-combo',
-    'look-good-feel-good-combo',
-    'stress-free-sleep-combo',
-    'fit-flex-ufit-combo', // backups if mapped differently
-    'glowberry-shilajit-gold-combo',
-    'mass-builder-gainer-combo',
-    'ufit-glowberry-combo',
-    'night-relief-fit-flex-combo',
-    'night-relief-glowberry-combo',
-    'ufit-shilajit-gold-combo',
-    'period-relief-glowberry-combo',
-    'mass-builder-glowberry-combo',
-    'mass-gainer-shilajit-gold-combo'
+    'period-pain-relief',
+    'night-relief-gummies',
+    'glow-berry-gummies',
+    'gutfix-health-gummies'
   ];
 
   const filtered = products.filter((p) => {
     // Keep only allowed slugs
-    const isAllowed = allowedSlugs.includes(p.slug) || 
-      allowedSlugs.includes(p.slug.replace('-static', '')) ||
-      p.slug === 'period-pain-relief' || 
-      p.slug === 'night-relief-gummies' ||
-      p.slug === 'glow-berry-gummies';
+    const slugKey = p.slug.replace('-static', '');
+    const isAllowed = allowedSlugs.includes(slugKey);
       
     if (!isAllowed) return false;
 
