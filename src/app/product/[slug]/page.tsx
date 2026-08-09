@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Plus, Minus, Heart, Share2, ChevronDown, ChevronUp, Copy, Tag, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Plus, Minus, Heart, Share2, ChevronDown, ChevronUp, Copy, Tag, ShoppingBag, ChevronLeft, ChevronRight, Flame, Dumbbell, Zap, Smile, CheckCircle2, Activity, Shield, Sparkles } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { Product } from '@/types/product';
 import ProductCard from '@/components/ui/ProductCard';
@@ -84,11 +84,37 @@ export default function ProductPage() {
     }
   }, [product?._id]);
 
+  useEffect(() => {
+    if (slug === 'u-fit') {
+      document.title = 'U Fit — Weight Loss & Fat Burner Capsules | Devki Herbal';
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', 'U Fit capsules support fat burning, curb cravings & boost metabolism. Clean, vegetarian formulation made in India. Shop now on Devki Herbal.');
+    }
+  }, [slug]);
+
+  const ufitFaqs = [
+    { q: 'How should I consume U Fit capsules?', a: 'Take 2 capsules daily, after breakfast or lunch with water. For best results, stay consistent for at least 8-12 weeks.' },
+    { q: 'Are there any side effects?', a: 'U Fit is made from 100% natural, vegetarian ingredients and is FSSAI approved, making it safe for daily consumption without side effects or jitters.' },
+    { q: 'Do I need to follow a diet or exercise?', a: 'For optimal results, we recommend pairing U Fit with a balanced diet and light physical activity such as a daily walk.' },
+    { q: 'Is U Fit suitable for vegans?', a: 'Yes, U Fit capsules are 100% vegetarian and vegan-friendly.' },
+  ];
+
+  const productFaqs = slug === 'u-fit' ? ufitFaqs : faqs;
+
   const p = product || defaultProduct;
   const productImages = p.images?.length ? p.images : [placeholderImage];
 
   // Set images for product. If slug is period-pain-relief, use the 6 custom images from /banner/
-  const images = slug === 'period-pain-relief'
+  const images = slug === 'u-fit'
+    ? [
+        '/banner/U-FIT.png',
+      ]
+    : slug === 'period-pain-relief'
     ? [
         '/banner/purify_detox.jpeg',
         '/banner/DETOX2.png',
@@ -345,16 +371,199 @@ export default function ProductPage() {
                </div>
              </div>
 
-             {/* Add to Cart */}
-             <button onClick={handleAddToCart} className="w-full mt-auto bg-black text-white text-[19px] font-extrabold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-gray-800 transition-colors shadow-xl active:scale-[0.98] h-16 shrink-0">
-               <ShoppingBag className="w-6 h-6" /> Add to cart
-             </button>
-          </div>
+              {/* Add to Cart */}
+              <button onClick={handleAddToCart} className="w-full mt-auto bg-black text-white text-[19px] font-extrabold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-gray-800 transition-colors shadow-xl active:scale-[0.98] h-16 shrink-0">
+                <ShoppingBag className="w-6 h-6" /> Add to cart
+              </button>
+
+              {/* Trust Badges */}
+              {slug === 'u-fit' && (
+                <div className="grid grid-cols-2 gap-3 mt-6 border-t border-slate-100 pt-6">
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                    <span className="text-lg">🚚</span> Free Delivery in 3-5 Days
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                    <span className="text-lg">🌱</span> 100% Vegetarian / Vegan
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                    <span className="text-lg">✅</span> FSSAI Approved
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                    <span className="text-lg">🇮🇳</span> Made in India
+                  </div>
+                </div>
+              )}
+           </div>
         </div>
 
         {/* Conditional Custom Competitor Sections or Default Timelines */}
         {slug === 'shilajit-gold' ? (
           <ShilajitCompetitorSections />
+        ) : slug === 'u-fit' ? (
+          <div className="space-y-16 mt-12">
+            {/* Key Benefits Grid */}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-[32px] p-8 md:p-12 shadow-sm"
+            >
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center tracking-tight">Key Benefits of U-FIT</h2>
+              <p className="text-gray-500 text-center mb-10 font-medium">Scientifically formulated to support your wellness journey</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { title: 'Supports fat metabolism', desc: 'Helps your body break down fats efficiently to utilize as natural energy.', icon: Flame, color: 'text-orange-500 bg-orange-50' },
+                  { title: 'Helps control hunger & cravings', desc: 'Aids in reducing sudden sugar cravings and emotional eating cycles.', icon: Sparkles, color: 'text-indigo-500 bg-indigo-50' },
+                  { title: 'Supports lean muscle retention', desc: 'Formulated to target stubborn fat while preserving healthy muscle tissue.', icon: Dumbbell, color: 'text-emerald-500 bg-emerald-50' },
+                  { title: 'Aids healthy carb/sugar metabolism', desc: 'Promotes stable glucose utilization to prevent energy crashes.', icon: Zap, color: 'text-amber-500 bg-amber-50' },
+                  { title: 'Supports digestion & reduces bloating', desc: 'Helps keep your digestive tract clean, lighter, and free from gas.', icon: Smile, color: 'text-pink-500 bg-pink-50' },
+                  { title: 'Boosts natural energy levels', desc: 'Keeps you active and fresh throughout the day without any crash.', icon: CheckCircle2, color: 'text-blue-500 bg-blue-50' }
+                ].map((b, i) => (
+                  <div key={i} className="p-6 rounded-2xl border border-slate-100 hover:border-slate-200 transition-all bg-slate-50/50 hover:bg-white hover:shadow-md group">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${b.color} transition-transform group-hover:scale-110`}>
+                      <b.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{b.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{b.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            {/* How To Use & Why Choose Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* How To Use */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-[32px] p-8 md:p-10 shadow-sm flex flex-col justify-between border border-slate-50"
+              >
+                <div>
+                  <h2 className="text-2xl font-extrabold text-gray-900 mb-6 tracking-tight flex items-center gap-2">
+                    <span className="text-2xl">📝</span> How to use U-FIT
+                  </h2>
+                  <div className="space-y-6">
+                    <div className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-[#0a3161] text-white flex items-center justify-center font-bold shrink-0">1</div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">Dosage</h4>
+                        <p className="text-sm text-gray-600 mt-1">2 Capsules Daily, after breakfast/lunch with water.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-[#0a3161] text-white flex items-center justify-center font-bold shrink-0">2</div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">Recommended Duration</h4>
+                        <p className="text-sm text-gray-600 mt-1">Use consistently for at least 8-12 weeks for visible results, alongside a balanced diet and light activity.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 bg-blue-50/50 rounded-xl p-4 border border-blue-100/50">
+                  <p className="text-xs font-semibold text-blue-800 leading-relaxed">💡 Tip: Staying hydrated and walking 15-20 minutes daily significantly accelerates your fat loss journey.</p>
+                </div>
+              </motion.div>
+
+              {/* Why Choose U-FIT */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-[#0a3161] text-white rounded-[32px] p-8 md:p-10 shadow-lg flex flex-col justify-between"
+              >
+                <div>
+                  <h2 className="text-2xl font-extrabold mb-6 tracking-tight flex items-center gap-2">
+                    <span className="text-2xl">🌟</span> Why Choose U Fit
+                  </h2>
+                  <ul className="space-y-4">
+                    {[
+                      { title: 'Visible Results', desc: 'backed by consistent, science-based formulation' },
+                      { title: 'Clean Formulation', desc: 'no unnecessary fillers' },
+                      { title: 'Safe for Daily Use', desc: 'vegetarian, FSSAI-approved' },
+                      { title: 'Made for Indian Lifestyles', desc: 'formulated to suit Indian diet & routine' }
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="font-bold text-white">{item.title}</strong> — <span className="text-gray-200 text-sm">{item.desc}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-8 pt-6 border-t border-white/10 text-center">
+                  <p className="text-xs font-semibold text-gray-300">100% Quality Guaranteed & Safe Payments</p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Ingredients Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-[32px] p-8 md:p-12 shadow-sm text-center border border-slate-50"
+            >
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">Active Ingredients</h2>
+              <p className="text-gray-500 mb-10 font-medium">100% active compounds formulated for maximum bioavailability</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-10">
+                {[
+                  { category: 'Appetite Support', items: ['Garcinia Cambogia', 'Caralluma Fimbriata'], color: 'border-l-4 border-indigo-500' },
+                  { category: 'Metabolism & Fat Support', items: ['Green Tea Extract', 'L-Carnitine', 'Guggul'], color: 'border-l-4 border-orange-500' },
+                  { category: 'Energy Support', items: ['Coenzyme Q10', 'Vitamin B12'], color: 'border-l-4 border-blue-500' }
+                ].map((cat, i) => (
+                  <div key={i} className={`p-6 rounded-2xl bg-slate-50/50 hover:bg-slate-50 transition-colors ${cat.color}`}>
+                    <h3 className="font-bold text-gray-900 text-lg mb-4">{cat.category}</h3>
+                    <ul className="space-y-2">
+                      {cat.items.map((item, idx) => (
+                        <li key={idx} className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="bg-[#f0fdf4] border border-[#bbf7d0] text-[#166534] py-3.5 px-6 rounded-2xl inline-block text-sm font-bold">
+                🛡️ "No harmful stimulants. No hidden fillers. Clean, transparent formulation."
+              </div>
+            </motion.section>
+
+            {/* Customer Reviews Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-[32px] p-8 md:p-12 shadow-sm"
+            >
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center tracking-tight">Customer Reviews</h2>
+              <p className="text-gray-500 text-center mb-10 font-medium">Real reviews from our verified buyers</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  { text: 'Started U Fit 4 weeks ago, noticed a real difference in cravings.', author: 'Rahul S.', date: 'Verified Buyer' },
+                  { text: 'Easy to take, no jitters, feels natural.', author: 'Amit K.', date: 'Verified Buyer' },
+                  { text: 'Visible waist reduction, digestion feels lighter.', author: 'Priya M.', date: 'Verified Buyer' }
+                ].map((rev, i) => (
+                  <div key={i} className="p-6 rounded-2xl bg-slate-50/50 border border-slate-100 flex flex-col justify-between">
+                    <div>
+                      <div className="flex gap-0.5 text-amber-400 mb-4">
+                        {[...Array(5)].map((_, idx) => <Star key={idx} className="w-4 h-4 fill-current" />)}
+                      </div>
+                      <p className="text-gray-700 text-sm font-semibold italic mb-6 leading-relaxed">"{rev.text}"</p>
+                    </div>
+                    <div className="border-t border-slate-100 pt-4 flex justify-between items-center text-xs font-bold text-gray-500">
+                      <span>— {rev.author}</span>
+                      <span className="text-[#166534] bg-emerald-50 px-2 py-1 rounded-md">{rev.date}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          </div>
         ) : (
           <>
             {/* Burn Your Extra Fat While You Sleep Section */}
@@ -445,7 +654,7 @@ export default function ProductPage() {
         >
           <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center tracking-tight">Frequently Asked Questions</h2>
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
+            {productFaqs.map((faq, i) => (
               <div
                 key={i}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100"
