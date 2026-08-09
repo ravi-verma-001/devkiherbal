@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import crypto from 'crypto';
 import dbConnect from '@/lib/mongodb';
 import Order from '@/models/Order';
@@ -46,9 +47,17 @@ export async function POST(request: NextRequest) {
 
     // 3. Decrement inventory
     for (const item of order.items) {
-      await Product.findByIdAndUpdate(item.productId, {
-        $inc: { stockQuantity: -item.quantity },
-      });
+      const isValidObjectId = mongoose.isValidObjectId(item.productId);
+      if (isValidObjectId) {
+        await Product.findByIdAndUpdate(item.productId, {
+          $inc: { stockQuantity: -item.quantity },
+        });
+      } else {
+        await Product.findOneAndUpdate(
+          { $or: [{ _id: item.productId }, { slug: item.productId }] },
+          { $inc: { stockQuantity: -item.quantity } }
+        );
+      }
     }
 
     // 4. Remove TTL expiry so order is permanent
