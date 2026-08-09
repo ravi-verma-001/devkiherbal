@@ -88,7 +88,7 @@ export default function Hero() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative aspect-video sm:aspect-[11/4.84] w-full bg-white">
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-white">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide.id}
@@ -102,7 +102,7 @@ export default function Hero() {
                   src={currentSlide.image}
                   alt={currentSlide.headline || 'Guruji Ayurveda banner'}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority={activeIndex === 0}
                   loading={activeIndex === 0 ? 'eager' : 'lazy'}
                   sizes="(max-width: 768px) 100vw, 1100px"
