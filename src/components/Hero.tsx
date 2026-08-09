@@ -16,31 +16,38 @@ type Slide = {
 const slides: Slide[] = [
   {
     id: 1,
-    image: '/banner/banner.jpeg',
+    image: '/banner/Slider1.png',
     headline: 'Revitalize Your Daily Wellness',
     ctaLabel: 'Shop Now',
     ctaHref: '/shop',
   },
   {
     id: 2,
-    image: '/banner/banner5.jpeg',
+    image: '/banner/Slider2.png',
     headline: 'Gut Health, Simplified',
     ctaLabel: 'Shop Now',
     ctaHref: '/shop?category=digestive',
   },
   {
     id: 3,
-    image: '/banner/banner6.jpeg',
+    image: '/banner/Slider3.png',
     headline: 'Beauty From Within',
     ctaLabel: 'Shop Now',
     ctaHref: '/shop?category=beauty',
   },
   {
     id: 4,
-    image: '/banner/banner7.jpeg',
+    image: '/banner/Slider4.png',
     headline: 'Guruji Ayurveda: Rooted in Tradition',
     ctaLabel: 'Shop Now',
     ctaHref: '/shop',
+  },
+  {
+    id: 5,
+    image: '/banner/Slider5.png',
+    headline: 'Premium Organic Energy',
+    ctaLabel: 'Shop Now',
+    ctaHref: '/shop?category=energy',
   },
 ];
 
