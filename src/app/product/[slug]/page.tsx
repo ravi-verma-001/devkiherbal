@@ -286,7 +286,7 @@ export default function ProductPage() {
                     <div className="flex items-center text-[#2d3282] font-semibold text-[15px]">
                        <Tag className="w-4 h-4 mr-2" /> Get it for ₹ {Math.max(0, currentPrice - 100)}
                     </div>
-                    <div className="text-[#2d3282] text-[13px]">Use Code: <span className="font-extrabold text-[15px]">WHATSUP</span></div>
+                    <div className="text-[#2d3282] text-[13px]">Use Code: <span className="font-extrabold text-[15px]">DEVKI</span></div>
                  </div>
                  <div className="flex justify-between items-center text-[#4a55a2] text-[13px] font-bold">
                     <span>+ Extra 5% discount on UPI payments</span>
