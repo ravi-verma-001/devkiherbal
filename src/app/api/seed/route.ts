@@ -86,8 +86,7 @@ const sampleProducts = [
       '3m': 2249
     },
     images: [
-      '/banner/ShilajitNew.png',
-      '/banner/shilijit1.jpeg',
+      '/banner/ShilajitNew.jpeg',
       '/banner/shilijit2.jpeg',
       '/banner/shilijit3.jpeg',
       '/banner/shilijit4.jpeg',
@@ -208,8 +207,8 @@ const sampleProducts = [
     featured: true,
   },
   {
-    name: 'Fit Flex & U-Fit Combo',
-    slug: 'fit-flex-ufit-combo',
+    name: 'Look Good Feel Good Combo',
+    slug: 'look-good-feel-good-combo',
     description: 'Get the best of both worlds with our Fit Flex & U-Fit fitness management combo, designed to support weight loss, boost metabolism, and enhance muscle recovery.',
     price: 1399,
     originalPrice: 2598,
@@ -218,7 +217,7 @@ const sampleProducts = [
       '2m': 2499,
       '3m': 3599
     },
-    images: ['/banner/C-7.jpeg'],
+    images: ['/banner/C-7.png'],
     category: 'Combo',
     benefits: ['Boost Metabolism', 'Muscle Recovery', 'Weight Management'],
     ingredients: ['L-Carnitine', 'Collagen', 'Green Tea Extract'],
@@ -292,8 +291,8 @@ const sampleProducts = [
     featured: true,
   },
   {
-    name: 'Night Relief & Fit-Flex Combo',
-    slug: 'night-relief-fit-flex-combo',
+    name: 'Stress-Free Sleep Combo',
+    slug: 'stress-free-sleep-combo',
     description: 'Enhance your recovery overnight. Rest deeply with Night Relief Gummies and restore muscle flexibility with Fit Flex.',
     price: 1299,
     originalPrice: 2398,
@@ -302,7 +301,7 @@ const sampleProducts = [
       '2m': 2299,
       '3m': 3299
     },
-    images: ['/banner/C-6.png'],
+    images: ['/banner/C-8.png'],
     category: 'Combo',
     benefits: ['Restful Sleep', 'Muscle Recovery', 'Joint Support'],
     ingredients: ['Melatonin', 'Collagen', 'L-Theanine'],

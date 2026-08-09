@@ -78,15 +78,17 @@ function ShopContent() {
     'fit-flex',
     'shilajit-gold',
     'mass-builder',
-    // 8 Bestseller & Explore Combos
+    // 4 Best Seller Combos
     'pro-hair-skin-combo',
     'the-confidence-combo',
     'just-lose-it-combo',
     'great-looks-energy-bundle',
+    // 4 Explore Combos
+    'look-good-feel-good-combo',
+    'stress-free-sleep-combo',
     'period-pain-relief',
     'night-relief-gummies',
-    'glow-berry-gummies',
-    'gutfix-health-gummies'
+    'glow-berry-gummies'
   ];
 
   const filtered = products.filter((p) => {
