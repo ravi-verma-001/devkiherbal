@@ -20,7 +20,7 @@ interface ComboItem {
 const initialCombos: ComboItem[] = [
   {
     _id: 'pro-hair-skin-combo-static',
-    name: 'Pro Hair & Skin Combo',
+    name: 'Active Weight Loss Combo',
     slug: 'pro-hair-skin-combo',
     price: 1649,
     rating: 4.6,
@@ -29,7 +29,7 @@ const initialCombos: ComboItem[] = [
   },
   {
     _id: 'the-confidence-combo-static',
-    name: 'The Confidence Combo',
+    name: 'Fit & Detox Combo',
     slug: 'the-confidence-combo',
     price: 1799,
     rating: 4.6,
@@ -38,7 +38,7 @@ const initialCombos: ComboItem[] = [
   },
   {
     _id: 'just-lose-it-combo-static',
-    name: 'Just Lose It Combo',
+    name: 'Complete Weight Loss Combo',
     slug: 'just-lose-it-combo',
     price: 1999,
     rating: 4.6,
@@ -47,7 +47,7 @@ const initialCombos: ComboItem[] = [
   },
   {
     _id: 'great-looks-energy-bundle-static',
-    name: 'Great Looks & Energy Bundle',
+    name: 'Strength & Mass Combo',
     slug: 'great-looks-energy-bundle',
     price: 1199,
     rating: 4.7,

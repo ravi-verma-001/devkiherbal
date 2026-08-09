@@ -417,7 +417,7 @@ const sampleProducts = [
     featured: true,
   },
   {
-    name: 'Pro Hair & Skin Combo',
+    name: 'Active Weight Loss Combo',
     slug: 'pro-hair-skin-combo',
     description: 'Get thick, healthy hair and glowing skin with our Pro Hair & Skin Combo. Contains premium ingredients for hair strength and skin radiance.',
     price: 1649,
@@ -438,7 +438,7 @@ const sampleProducts = [
     featured: true,
   },
   {
-    name: 'The Confidence Combo',
+    name: 'Fit & Detox Combo',
     slug: 'the-confidence-combo',
     description: 'Boost your confidence with our specialized beauty and wellness confidence combo. Formulated to enhance your vitality and natural look.',
     price: 1799,
@@ -459,7 +459,7 @@ const sampleProducts = [
     featured: true,
   },
   {
-    name: 'Just Lose It Combo',
+    name: 'Complete Weight Loss Combo',
     slug: 'just-lose-it-combo',
     description: 'Manage weight, curb cravings, and burn fat with our Just Lose It Combo. Formulated to help you reach your body management goals.',
     price: 1999,
@@ -480,7 +480,7 @@ const sampleProducts = [
     featured: true,
   },
   {
-    name: 'Great Looks & Energy Bundle',
+    name: 'Strength & Mass Combo',
     slug: 'great-looks-energy-bundle',
     description: 'Combine the power of glowing skin, thick hair, and unmatched energy and stamina with our premium bundle.',
     price: 1199,
