@@ -114,15 +114,7 @@ export const fallbackProducts = [
       '2m': 1249,
       '3m': 1849
     },
-    images: [
-      '/banner/NightReliefNew.png',
-      '/banner/nightrelief1.jpeg',
-      '/banner/nightrelief2.jpeg',
-      '/banner/nightrelief3.jpeg',
-      '/banner/nightrelief4.jpeg',
-      '/banner/nightrelief5.jpeg',
-      '/banner/nightrelief6.jpeg'
-    ],
+    images: ['/banner/C-6.png', '/banner/nightrelief1.jpeg', '/banner/nightrelief2.jpeg', '/banner/nightrelief3.jpeg', '/banner/nightrelief4.jpeg', '/banner/nightrelief5.jpeg', '/banner/nightrelief6.jpeg'],
     category: 'Sleep & Relaxation',
     benefits: ['Restful Sleep', 'Stress Reduction', 'Calm Mind'],
     ingredients: ['Melatonin', 'L-Theanine', 'Chamomile'],
@@ -144,7 +136,7 @@ export const fallbackProducts = [
       '2m': 1449,
       '3m': 1979
     },
-    images: ['/banner/GlowBerry.png'],
+    images: ['/banner/C-5.png'],
     category: 'Beauty',
     benefits: ['Skin Glow', 'Hair Strength', 'Nail Health'],
     ingredients: ['Biotin', 'Vitamin C', 'Vitamin E', 'Zinc'],
@@ -188,7 +180,7 @@ export const fallbackProducts = [
       '2m': 1449,
       '3m': 2150
     },
-    images: ['/banner/MassGainer.png'],
+    images: ['/banner/MassBuilder.png'],
     category: 'Muscle Gain',
     benefits: ['Calorie Dense', 'High Protein', 'Fast Mass Gain'],
     ingredients: ['Complex Carbs', 'Protein Blend', 'Vitamins'],
@@ -210,7 +202,7 @@ export const fallbackProducts = [
       '2m': 1599,
       '3m': 2299
     },
-    images: ['/banner/GutFix.png'],
+    images: ['/banner/C-5.png'],
     category: 'Digestive',
     benefits: ['Balances Gut Flora', 'Improves Digestion', 'Reduces Bloating'],
     ingredients: ['Bacillus Coagulans (Probiotic)', 'Chicory Root Fiber (Prebiotic)', 'Apple Cider Vinegar'],
@@ -232,7 +224,7 @@ export const fallbackProducts = [
       '2m': 2499,
       '3m': 3599
     },
-    images: ['/banner/combo_fitflex_ufit.png'],
+    images: ['/banner/C-7.jpeg'],
     category: 'Combo',
     benefits: ['Boost Metabolism', 'Muscle Recovery', 'Weight Management'],
     ingredients: ['L-Carnitine', 'Collagen', 'Green Tea Extract'],
@@ -254,7 +246,7 @@ export const fallbackProducts = [
       '2m': 2599,
       '3m': 3799
     },
-    images: ['/banner/combo_glowberry_shilajit.png'],
+    images: ['/banner/C-1.png'],
     category: 'Combo',
     benefits: ['Skin Radiance', 'Stamina Boost', 'Vitality & Vigor'],
     ingredients: ['Biotin', 'Shilajit Extract', 'Gold Bhasma'],
@@ -276,7 +268,7 @@ export const fallbackProducts = [
       '2m': 2299,
       '3m': 3299
     },
-    images: ['/banner/combo_mass_builder_gainer.png'],
+    images: ['/banner/C-3.png'],
     category: 'Combo',
     benefits: ['Accelerate Muscle Growth', 'Increase Strength', 'High Caloric Support'],
     ingredients: ['Whey Protein', 'Creatine', 'BCAA', 'Complex Carbs'],
@@ -298,7 +290,7 @@ export const fallbackProducts = [
       '2m': 2599,
       '3m': 3799
     },
-    images: ['/banner/combo_ufit_glowberry.png'],
+    images: ['/banner/C-5.png'],
     category: 'Combo',
     benefits: ['Manage Cravings', 'Skin Glow', 'Boost Metabolism'],
     ingredients: ['Garcinia Cambogia', 'Biotin', 'Vitamin C'],
@@ -320,7 +312,7 @@ export const fallbackProducts = [
       '2m': 2299,
       '3m': 3299
     },
-    images: ['/banner/combo_nightrelief_fitflex.png'],
+    images: ['/banner/C-6.png'],
     category: 'Combo',
     benefits: ['Restful Sleep', 'Muscle Recovery', 'Joint Support'],
     ingredients: ['Melatonin', 'Collagen', 'L-Theanine'],
@@ -342,7 +334,7 @@ export const fallbackProducts = [
       '2m': 2399,
       '3m': 3499
     },
-    images: ['/banner/combo_nightrelief_glowberry.png'],
+    images: ['/banner/C-2.png', '/banner/nightrelief1.jpeg', '/banner/nightrelief2.jpeg', '/banner/nightrelief3.jpeg', '/banner/nightrelief4.jpeg', '/banner/nightrelief5.jpeg', '/banner/nightrelief6.jpeg'],
     category: 'Combo',
     benefits: ['Cell Regeneration', 'Restful Sleep', 'Skin Glow & Hydration'],
     ingredients: ['Melatonin', 'Biotin', 'Chamomile'],
@@ -364,7 +356,7 @@ export const fallbackProducts = [
       '2m': 2499,
       '3m': 3599
     },
-    images: ['/banner/combo_ufit_shilajit.png'],
+    images: ['/banner/C-8.jpeg'],
     category: 'Combo',
     benefits: ['Stamina & Performance', 'Boost Metabolism', 'Weight Management'],
     ingredients: ['Green Tea Extract', 'Shilajit Extract', 'Ashwagandha'],
@@ -386,7 +378,7 @@ export const fallbackProducts = [
       '2m': 2399,
       '3m': 3499
     },
-    images: ['/banner/combo_period_glowberry.png'],
+    images: ['/banner/C-5.png'],
     category: 'Combo',
     benefits: ['Relieve Cramps', 'Balance Mood', 'Skin Glow & Biotin Support'],
     ingredients: ['Lodhra', 'Biotin', 'Shatavari'],
@@ -408,7 +400,7 @@ export const fallbackProducts = [
       '2m': 2399,
       '3m': 3499
     },
-    images: ['/banner/combo_massbuilder_glowberry.png'],
+    images: ['/banner/C-5.png'],
     category: 'Combo',
     benefits: ['Muscle Tone', 'Skin Glow', 'Nail & Hair Strength'],
     ingredients: ['Whey Protein', 'Biotin', 'BCAA'],
@@ -430,7 +422,7 @@ export const fallbackProducts = [
       '2m': 2499,
       '3m': 3599
     },
-    images: ['/banner/combo_massgainer_shilajit.png'],
+    images: ['/banner/C-8.jpeg'],
     category: 'Combo',
     benefits: ['Maximize Strength', 'Stamina & Performance', 'Massive Calorie Support'],
     ingredients: ['Complex Carbs', 'Shilajit Extract', 'Gold Bhasma'],

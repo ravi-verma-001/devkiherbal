@@ -119,19 +119,19 @@ export default function ProductPage() {
       ]
     : slug === 'skin-hair-combo' || slug === 'pro-hair-skin-combo'
     ? [
-        '/banner/combo1.png'
+        '/banner/C-1.png'
       ]
     : slug === 'beauty-sleep-combo' || slug === 'the-confidence-combo'
     ? [
-        '/banner/combo2.png'
+        '/banner/C-2.png'
       ]
     : slug === 'stress-free-sleep-combo' || slug === 'just-lose-it-combo'
     ? [
-        '/banner/combo3.png'
+        '/banner/C-3.png'
       ]
     : slug === 'great-looks-energy-bundle'
     ? [
-        '/banner/Gemini_Generated_Image_kn9yelkn9yelkn9y.png'
+        '/banner/C-4.jpeg'
       ]
     : (() => {
         const dummyImages = [
