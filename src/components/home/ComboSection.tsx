@@ -19,13 +19,13 @@ const combos = [
   },
   {
     title: 'Look Good Feel Good\nCombo',
-    image: '/banner/C-7.jpeg',
+    image: '/banner/C-7.png',
     gradient: 'from-[#6b5372] via-[#8c7493] to-[#ebdff0]',
     href: '/shop?category=combo',
   },
   {
     title: 'Stress-Free Sleep\nCombo',
-    image: '/banner/C-8.jpeg',
+    image: '/banner/C-8.png',
     gradient: 'from-[#4e5b66] via-[#758491] to-[#e3ecf5]',
     href: '/shop?category=combo',
   },
