@@ -7,25 +7,25 @@ import ComboCard from '../ui/ComboCard';
 const combos = [
   {
     title: 'Pro Skin and Hair\nCombo',
-    image: '/banner/combo1.png',
+    image: '/banner/C-5.png',
     gradient: 'from-[#655b70] via-[#857991] to-[#dedce2]',
     href: '/shop?category=combo',
   },
   {
     title: 'Beauty Sleep\nCombo',
-    image: '/banner/combo2.png?v=2',
+    image: '/banner/C-6.png',
     gradient: 'from-[#545e77] via-[#75809b] to-[#dfecf8]',
     href: '/shop?category=combo',
   },
   {
     title: 'Look Good Feel Good\nCombo',
-    image: '/banner/combo-feel-good.jpeg',
+    image: '/banner/C-7.jpeg',
     gradient: 'from-[#6b5372] via-[#8c7493] to-[#ebdff0]',
     href: '/shop?category=combo',
   },
   {
     title: 'Stress-Free Sleep\nCombo',
-    image: '/banner/combo3.png',
+    image: '/banner/C-8.jpeg',
     gradient: 'from-[#4e5b66] via-[#758491] to-[#e3ecf5]',
     href: '/shop?category=combo',
   },

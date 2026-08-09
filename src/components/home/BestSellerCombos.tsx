@@ -25,7 +25,7 @@ const initialCombos: ComboItem[] = [
     price: 1649,
     rating: 4.6,
     reviewCount: 10648,
-    image: '/banner/combo1.png',
+    image: '/banner/C-1.png',
   },
   {
     _id: 'the-confidence-combo-static',
@@ -34,7 +34,7 @@ const initialCombos: ComboItem[] = [
     price: 1799,
     rating: 4.6,
     reviewCount: 10648,
-    image: '/banner/combo2.png',
+    image: '/banner/C-2.png',
   },
   {
     _id: 'just-lose-it-combo-static',
@@ -43,7 +43,7 @@ const initialCombos: ComboItem[] = [
     price: 1999,
     rating: 4.6,
     reviewCount: 2320,
-    image: '/banner/combo3.png',
+    image: '/banner/C-3.png',
   },
   {
     _id: 'great-looks-energy-bundle-static',
@@ -52,7 +52,7 @@ const initialCombos: ComboItem[] = [
     price: 1199,
     rating: 4.7,
     reviewCount: 1338,
-    image: '/banner/Gemini_Generated_Image_kn9yelkn9yelkn9y.png',
+    image: '/banner/C-4.jpeg',
   }
 ];
 

@@ -11,7 +11,7 @@ export const fallbackProducts = [
       '2m': 1499,
       '3m': 2100
     },
-    images: ['/banner/U-F.png'],
+    images: ['/banner/U-FIT.png'],
     category: 'Weight Management',
     benefits: ['Burn Calories', 'Manage Cravings', 'Boost Metabolism'],
     ingredients: ['Green Tea Extract', 'Garcinia Cambogia', 'L-Carnitine'],
@@ -33,7 +33,7 @@ export const fallbackProducts = [
       '2m': 1499,
       '3m': 2100
     },
-    images: ['/banner/F-F.png'],
+    images: ['/banner/FIT-FLEX.png'],
     category: 'Weight Management',
     benefits: ['Muscle Recovery', 'Improved Flexibility', 'Joint Support'],
     ingredients: ['Collagen', 'Glucosamine', 'Turmeric'],

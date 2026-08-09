@@ -30,7 +30,7 @@ const slides: HighlightSlide[] = [
     description: 'Maximize your workouts and stay fit with our advanced metabolism formula',
     price: 1099,
     originalPrice: 1599,
-    image: '/banner/U-F.png',
+    image: '/banner/U-FIT.png',
     category: 'weight-management',
     couponCode: 'WHEALTHY',
     statsText: (
