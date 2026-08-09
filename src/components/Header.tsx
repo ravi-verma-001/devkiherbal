@@ -38,7 +38,7 @@ const ALL_PRODUCTS = [
   },
   {
     name: 'Shilajit Gummies',
-    image: '/banner/ShilajitNew.png',
+    image: '/banner/ShilajitNew.jpeg',
     href: '/product/shilajit-gummies',
   }
 ];
