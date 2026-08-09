@@ -4,12 +4,12 @@ export const fallbackProducts = [
     name: 'U-Fit',
     slug: 'u-fit',
     description: 'A powerful formula to help you manage your fitness goals and maintain a healthy weight.',
-    price: 849,
-    originalPrice: 1299,
+    price: 1249,
+    originalPrice: 1599,
     variantPrices: {
-      '1m': 849,
-      '2m': 1499,
-      '3m': 2100
+      '1m': 1249,
+      '2m': 2199,
+      '3m': 2999
     },
     images: ['/banner/U-FIT.png'],
     category: 'Weight Management',
@@ -26,12 +26,12 @@ export const fallbackProducts = [
     name: 'Fit Flex',
     slug: 'fit-flex',
     description: 'Enhance your flexibility and muscle recovery with our specialized Fit Flex formula.',
-    price: 849,
-    originalPrice: 1299,
+    price: 1249,
+    originalPrice: 1599,
     variantPrices: {
-      '1m': 849,
-      '2m': 1499,
-      '3m': 2100
+      '1m': 1249,
+      '2m': 2199,
+      '3m': 2999
     },
     images: ['/banner/FIT-FLEX.png'],
     category: 'Weight Management',
@@ -48,12 +48,12 @@ export const fallbackProducts = [
     name: 'Period Pain Relief',
     slug: 'period-pain-relief',
     description: 'Relieve menstrual discomfort naturally with our specialized pain relief formula.',
-    price: 749,
-    originalPrice: 999,
+    price: 999,
+    originalPrice: 1499,
     variantPrices: {
-      '1m': 749,
-      '2m': 1349,
-      '3m': 1899
+      '1m': 999,
+      '2m': 1799,
+      '3m': 2499
     },
     images: [
       '/banner/PeriodPainNew.png',
@@ -78,12 +78,12 @@ export const fallbackProducts = [
     name: 'Shilajit Gold',
     slug: 'shilajit-gold',
     description: 'Enhance your vitality and vigor with our pure Shilajit Gold enriched with herbal extracts.',
-    price: 850,
-    originalPrice: 1199,
+    price: 1299,
+    originalPrice: 1799,
     variantPrices: {
-      '1m': 850,
-      '2m': 1499,
-      '3m': 2249
+      '1m': 1299,
+      '2m': 2299,
+      '3m': 3199
     },
     images: [
       '/banner/ShilajitNew.jpeg',
@@ -150,12 +150,12 @@ export const fallbackProducts = [
     name: 'Mass Builder',
     slug: 'mass-builder',
     description: 'Build lean muscle mass and improve strength with our Mass Builder capsules.',
-    price: 749,
-    originalPrice: 1199,
+    price: 1299,
+    originalPrice: 1799,
     variantPrices: {
-      '1m': 749,
-      '2m': 1349,
-      '3m': 1850
+      '1m': 1299,
+      '2m': 2299,
+      '3m': 3199
     },
     images: ['/banner/MassBuilder.png'],
     category: 'Muscle Gain',
