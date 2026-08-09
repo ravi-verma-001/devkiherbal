@@ -102,6 +102,10 @@ export default function ProductPage() {
     { q: 'Are there any side effects?', a: 'U Fit is made from 100% natural, vegetarian ingredients and is FSSAI approved, making it safe for daily consumption without side effects or jitters.' },
     { q: 'Do I need to follow a diet or exercise?', a: 'For optimal results, we recommend pairing U Fit with a balanced diet and light physical activity such as a daily walk.' },
     { q: 'Is U Fit suitable for vegans?', a: 'Yes, U Fit capsules are 100% vegetarian and vegan-friendly.' },
+    { q: 'Who can use U Fit capsules?', a: 'Adults looking to support healthy weight management and metabolism.' },
+    { q: 'Is U Fit safe for people with diabetes or PCOS?', a: 'People with existing health conditions should consult their doctor before starting any new supplement.' },
+    { q: 'How long until I see results?', a: 'Most users notice changes within 6–8 weeks with consistent use and a healthy routine.' },
+    { q: 'Can I take U Fit with other supplements?', a: 'Generally yes, but avoid stacking with other stimulant or caffeine-heavy products. Consult your doctor if unsure.' }
   ];
 
   const productFaqs = slug === 'u-fit' ? ufitFaqs : faqs;
