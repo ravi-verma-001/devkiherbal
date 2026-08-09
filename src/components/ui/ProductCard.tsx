@@ -47,12 +47,12 @@ export default function ProductCard({ product, index = 0, showQuickAdd = true }:
     >
       <Link href={`/product/${product.slug}`} className="flex flex-col flex-1">
         {/* Image Container */}
-        <div className={`relative aspect-square w-full bg-white rounded-[20px] overflow-hidden ${product.slug === 'shilajit-gold' ? 'p-1' : ''}`}>
+        <div className={`relative aspect-square w-full bg-white rounded-[20px] overflow-hidden ${product.slug === 'shilajit-gold' ? 'p-0' : ''}`}>
           <Image
             src={image}
             alt={product.name}
             fill
-            className={`object-cover group-hover:scale-105 transition-transform duration-500 ${product.slug === 'shilajit-gold' ? 'object-contain scale-[1.08] group-hover:scale-[1.13]' : ''}`}
+            className={`object-cover group-hover:scale-105 transition-transform duration-500 ${product.slug === 'shilajit-gold' ? 'object-contain scale-[1.25] group-hover:scale-[1.3]' : ''}`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             loading="lazy"
             unoptimized={true}
