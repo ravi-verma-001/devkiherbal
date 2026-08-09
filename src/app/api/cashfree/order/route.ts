@@ -34,10 +34,16 @@ export async function POST(request: NextRequest) {
     const validatedItems = [];
 
     for (const item of items) {
-      const isValidObjectId = mongoose.isValidObjectId(item.productId);
-      const dbProduct = isValidObjectId 
-        ? await Product.findById(item.productId)
-        : await Product.findOne({ $or: [{ _id: item.productId }, { slug: item.productId }] });
+      let dbProduct = null;
+      try {
+        const isValidObjectId = mongoose.isValidObjectId(item.productId);
+        dbProduct = isValidObjectId 
+          ? await Product.findById(item.productId)
+          : await Product.findOne({ $or: [{ _id: item.productId }, { slug: item.productId }] });
+      } catch (err) {
+        // Fallback for case where Mongoose throws CastError on non-standard string IDs
+        dbProduct = await Product.findOne({ $or: [{ _id: item.productId }, { slug: item.productId }] });
+      }
 
       if (!dbProduct) {
         return NextResponse.json({ error: `Product not found: ${item.name}` }, { status: 404 });
