@@ -154,7 +154,13 @@ const sampleProducts = [
       '2m': 2299,
       '3m': 3199
     },
-    images: ['/banner/MassBuilder.png'],
+    images: [
+      '/banner/MassBuilder.png',
+      '/banner/mass_builder_2.png',
+      '/banner/mass_builder_3.png',
+      '/banner/mass_builder_4.png',
+      '/banner/mass_builder_5.png'
+    ],
     category: 'Muscle Gain',
     benefits: ['Muscle Growth', 'Increased Strength', 'Better Recovery'],
     ingredients: ['Whey Protein', 'Creatine', 'BCAA'],
