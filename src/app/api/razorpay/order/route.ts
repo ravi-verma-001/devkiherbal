@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import { razorpay } from '@/lib/razorpay';
 import dbConnect from '@/lib/mongodb';
 import Product from '@/models/Product';
@@ -35,7 +36,11 @@ export async function POST(request: NextRequest) {
     const validatedItems = [];
 
     for (const item of items) {
-      const dbProduct = await Product.findById(item.productId);
+      const isValidObjectId = mongoose.isValidObjectId(item.productId);
+      const dbProduct = isValidObjectId 
+        ? await Product.findById(item.productId)
+        : await Product.findOne({ $or: [{ _id: item.productId }, { slug: item.productId }] });
+
       if (!dbProduct) {
         return NextResponse.json({ error: `Product not found: ${item.name}` }, { status: 404 });
       }
