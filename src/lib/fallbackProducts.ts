@@ -45,7 +45,7 @@ export const fallbackProducts = [
   },
   {
     _id: '3',
-    name: 'Period Pain Relief',
+    name: 'Purify Detox',
     slug: 'period-pain-relief',
     description: 'Relieve menstrual discomfort naturally with our specialized pain relief formula.',
     price: 999,
@@ -56,7 +56,7 @@ export const fallbackProducts = [
       '3m': 2499
     },
     images: [
-      '/banner/PeriodPainNew.png',
+      '/banner/purify_detox.jpeg',
       '/banner/periods3.jpeg',
       '/banner/periods4.jpeg',
       '/banner/periods5.jpeg',
@@ -65,7 +65,7 @@ export const fallbackProducts = [
       '/banner/periods8.jpeg'
     ],
     category: 'Women Health',
-    benefits: ['Relieves Cramps', 'Balances Mood', 'Reduces Inflammation'],
+    benefits: ['Relives Cramps', 'Balances Mood', 'Reduces Inflammation'],
     ingredients: ['Lodhra', 'Ashoka', 'Shatavari'],
     rating: 4.8,
     reviewCount: 945,
