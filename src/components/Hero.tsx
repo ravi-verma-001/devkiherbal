@@ -15,6 +15,13 @@ type Slide = {
 
 const slides: Slide[] = [
   {
+    id: 0,
+    image: '/banner/Slider.png',
+    headline: 'Your Premium Herbal Store',
+    ctaLabel: 'Shop Now',
+    ctaHref: '/shop',
+  },
+  {
     id: 1,
     image: '/banner/Slider1.png',
     headline: 'Revitalize Your Daily Wellness',
