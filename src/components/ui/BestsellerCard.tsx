@@ -52,11 +52,11 @@ export default function BestsellerCard({ product, index = 0 }: BestsellerCardPro
     >
       <Link href={`/product/${product.slug}`} className="flex flex-col flex-1">
         {/* Image Container */}
-        <div className="relative aspect-square w-full bg-white rounded-[20px] overflow-hidden">
+        <div className={`relative aspect-square w-full bg-white rounded-[20px] overflow-hidden ${product.slug === 'shilajit-gold' ? 'p-1' : ''}`}>
           <img
             src={image}
             alt={product.name}
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className={`absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${product.slug === 'shilajit-gold' ? 'object-contain scale-[1.08] group-hover:scale-[1.13]' : ''}`}
             loading="eager"
           />
         </div>
