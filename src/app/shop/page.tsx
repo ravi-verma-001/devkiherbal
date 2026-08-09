@@ -72,12 +72,22 @@ function ShopContent() {
       });
   }, [category, benefit, minPrice, maxPrice]);
 
-  const filtered = products.filter((p) =>
-    search
+  const excludedSlugs = [
+    'great-looks-energy-bundle',
+    'pro-hair-skin-combo',
+    'just-lose-it-combo',
+    'the-confidence-combo',
+    'ufit-shilajit-gold-combo',
+    'period-relief-glowberry-combo'
+  ];
+
+  const filtered = products.filter((p) => {
+    if (excludedSlugs.includes(p.slug)) return false;
+    return search
       ? p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.category?.toLowerCase().includes(search.toLowerCase())
-      : true
-  );
+      : true;
+  });
 
   const clearFilters = () => {
     setCategory('all');
